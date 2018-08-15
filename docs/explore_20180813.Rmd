@@ -1,0 +1,81 @@
+---
+title: "exploring_acoustic_data"
+author: "Mary Clapp"
+date: "8/13/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(chron)
+library(plotrix)
+
+
+```
+
+## POINT COUNT DATA
+Median **Species Richness** per point for all surveys 2014-2016. Survey number varies by lake. First graph shows all detections within 300m of the count; the second graph shows all detections within 50m of the count.
+```{r pressure, echo=FALSE}
+ggplot(data = e300) +
+  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
+  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2014-2016") +
+  facet_wrap(~basin) +
+  theme_light()
+```
+
+Median **Abundance** (number of individuals counted) per point for all surveys 2014-2016.
+```{r abundance, echo=FALSE}
+ggplot(data = e300) +
+  geom_boxplot(aes(x=fish, y=total, color=fish)) +
+  labs(x="treatment", y="number of birds detected", title="Bird Abundance within 300m, 2014-2016") +
+  facet_wrap(~basin) +
+  theme_light()
+```
+
+Mean abundance per species per point for all surveys 2014-2016. 
+```{r by-species, echo=FALSE}
+ggplot(spec_stats_fish, aes(x=spec_name, y=mean_count, fill=fish)) +
+  geom_bar(stat="identity", position=position_dodge(), width = 0.6) +
+  geom_errorbar(position=position_dodge(),
+                aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals per point, all years")
+```
+I also looked at 2015 only-- no significant differences in the trends (/lack thereof).
+
+The following graph uses only data collected on the point count at the SongMeter-- to see how congurent it is with the lake-wide data points, as well as with the microphone-collected data (next section).
+```{r SM_only, eval=FALSE}
+ggplot(spec_sm_stats, aes(x=species, y=mean_count, fill=fish)) +
+  geom_bar(stat="identity", position=position_dodge(), width = 0.6) + 
+  geom_errorbar(position=position_dodge(), 
+                aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6)) +
+  labs(title="Mean counts of birds within 300m of SongMeter point, 2014-2016", 
+       x="Species", 
+       y="mean count of individuals +/- s.e.m.")
+```
+
+### ACOUSTIC DATA
+Species Richness 
+```{r listening_data, eval=FALSE}
+ggplot(summary, aes(x=basin, y=sp_rich, color = fish)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = sp_rich - se, ymax = sp_rich + se), width = 0.2) + 
+  labs(x = "basin", y = "average species richness", title = "Species Richness by 10-min sample")
+```
+Calling Activity
+The following plot shows mean calling activity between fishless and fish-containing lakes. Worth noting that GCRF vocalize far more at fish-containing lakes, but were more abundant at fishless ones in the point count data.
+```{r call_activity}
+ggplot(foostats, aes(x=spec_name, y=mean, fill=fish)) +
+  geom_bar(stat="identity", position = position_dodge(), width=0.6) +
+  geom_errorbar(position=position_dodge(),
+                aes(ymin = mean-sem, ymax = mean+sem, width = 0.6)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title="Mean # of seconds per 10-minute recording a bird is singing", 
+              x="species", 
+              y="mean count of individuals +/- s.e.m.") +
+  scale_fill_discrete(name="lake type")
+```
+

@@ -1,0 +1,247 @@
+---
+title: "Index Exploration"
+author: "Kasey Brockelsby"
+date: "April 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+library(chron)
+library(MuMIn)
+file_names <- list.files(path = "../data/indices/2018_02_05/", full.names = TRUE, pattern = "*.csv")
+
+d <- do.call("rbind", (lapply(file_names,read.csv)))
+d <- subset(d, select = c(Site, Date, Yr, Mo, Day, Hr, Min, Sec, ACIout, BKdB_low, BKdB_bird, avgAMP,
+                        L10AMP, Hf, Ht, EI, Rough, ADI_step, Eveness_step, AR))
+
+# clean up dates and times
+d <- d %>%
+  unite(Time, Hr, Min, Sec, sep = ":", remove = FALSE) %>%
+  unite(Timestamp, Date, Time, sep = " ", remove = FALSE)
+
+d$Timestamp <- parse_date_time(d$Timestamp, "ymd HMS")
+
+d <- d %>% 
+  separate(Timestamp, c("day", "time"), sep="\\ ", remove = FALSE) 
+d <- d %>% 
+  select(-Date) %>% select(-Time)
+ 
+d$day<- ymd(d$day)
+d$time <- chron(times=d$time)
+
+# create separate columns for basin and fish treatment
+d <- d %>% separate(Site, c("basin", "fish"), sep=-1, remove = FALSE)
+d$fish <- factor(ifelse(gsub('[^12]', '', d$fish) == "2", "fish", "fishless"))
+
+# add a new column with a binary windy/stormy variable
+
+d$wind <- d$BKdB_low > 60
+```
+
+# Experiments in Finding Peak Acoustic Activity
+
+So, like I mentioned last we talked, there was a bit of a problem with some of the data.
+Namely, we had been conducting most of our prior analysis on a "morning" subset, which focused only
+on activity between 5am and 9am. This seems reasonable, as during breeding season this is when we hear
+the "dawn chorus", which is a peak of acoustic activity.
+The problem with that is, our data aren't exactly clear on the matter.
+Here's the graph I showed you at our last meeting, plotting hourly ACI from the entire dataset with a
+LOESS regression curve. In addition, datapoints with high wind were filtered out.
+
+```{r}
+hourly_ACI_exp <- d %>%
+  filter(wind == FALSE) %>%
+  group_by(Yr, Mo, Hr, Site, basin, fish) %>%
+  summarize(N = length(ACIout),
+            mean_ACI = mean(ACIout),
+            median_ACI = median(ACIout),
+            sd_ACI = sd(ACIout))
+
+ggplot(hourly_ACI_exp, aes(x = Hr, y = mean_ACI, colour = fish)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(title = "Overall Hourly ACI")
+```
+
+The trend here seems to show that acoustic activity is highest not from 5-9am, but from 1-4pm.
+So, to figure out what's going on here, I investigated four major points as requested, which I'll
+outline below.
+
+## Monthly Variation
+
+Logically, since the dawn chorus happens during breeding season, we should see that pattern
+primarily in the months of breeding season, focused towards May and June.
+
+The first thing I did to look at monthly variation was to subset the data further, and look at each
+individual month's plot. Here I've compiled all five months for which we had data into a single figure,
+for ease of reading. The first graph is colored by whether or not the lake has fish, and the second
+graph is colored by basin.
+
+```{r}
+ggplot(hourly_ACI_exp, aes(x = Hr, y = mean_ACI, colour = fish)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Hourly ACI by Month")
+
+ggplot(hourly_ACI_exp, aes(x = Hr, y = mean_ACI, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Hourly ACI by Month")
+```
+
+In the graph colored by fish, the pattern is quite clear: during May, ACI is highest from about 7-10am,
+which lines up reasonably well with the dawn chorus. Particularly interesting is that this pattern
+is significantly stronger in the fishless lake, which is hypothesized to have higher bird activity.
+In June, however, activity seems to be highest around midday (~12pm)
+In the other three months, activity is highest in the afternoon (~3pm), and both fishless and
+fish-containing lakes track relatively closely (except in September, where fish-containing lakes have
+much higher activity than fishless lakes.)
+
+In the graph colored by basin, we see quite a bit of variation. We only have data for a single basin
+in May, so the trend there remains as noted before. In June, each basin demonstrates a slightly
+different pattern - some have peak activity around noon (and it is very high, which likely skewed the
+previous graphs), while others have generally very little hourly variation in ACI. In July and August,
+we once again see most activity around 3pm, and in September there seems to be a general trend with
+peak activity around 3pm in most basins, even if that activity is low.
+
+Overall this leads me to believe that the dawn chorus would be primarily observable in May;
+unfortunately, we have only a single basin from a single year sampled in May. However, we must also
+determine if this pattern accurately reflects bird activity or is a result of something else.
+
+## Background Noise
+
+Next, I examined background pressure levels; first of "low" background noise relating to non-bird
+activity, then of background bird activity in the low-decibel range.
+
+The results here are quite solid; below is the trend in non-bird background pressure levels, both
+overall and by month, colored by basin.
+
+```{r}
+hourly_BKdB_low <- d %>%
+  filter(wind == FALSE) %>%
+  group_by(Mo, Hr, Site, basin, fish) %>%
+  summarize(N = length(BKdB_low),
+            mean_BKdB_low = mean(BKdB_low))
+
+ggplot(hourly_BKdB_low, aes(x = Hr, y = mean_BKdB_low, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(title = "Overall Background Levels (Low)")
+
+ggplot(hourly_BKdB_low, aes(x = Hr, y = mean_BKdB_low, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Background Levels (Low) by Month")
+```
+
+It's quite evident that for every basin, the highest background pressure levels are from 12-3pm in
+every basin in every month, with two notable exceptions: in May, our singular sampled basin has peak
+activity around noon, and in September, peak activity is around 2-4pm. This matches almost perfectly
+much of the results seen in the previous plots, which leads me to believe it is likely that the ACI
+values being skewed towards afternoon is because of these background levels.
+
+However, a similar pattern exists in May, but as we saw above, May's ACI was highest in the morning.
+Is this because bird activity in the early hours is so high that the graph reflects the dawn chorus *in spite of* background noise later in the day? This seems unlikely, as peak ACI for May is not significantly higher than for any other month.
+
+Regardless, I also examined background bird noise, which had different results:
+
+```{r}
+hourly_BKdB_bird <- d %>%
+  filter(wind == FALSE) %>%
+  group_by(Mo, Hr, Site, basin, fish) %>%
+  summarize(N = length(BKdB_bird),
+            mean_BKdB_bird = mean(BKdB_bird))
+
+ggplot(hourly_BKdB_bird, aes(x = Hr, y = mean_BKdB_bird, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(title = "Overall Background Levels (Bird)")
+
+ggplot(hourly_BKdB_bird, aes(x = Hr, y = mean_BKdB_bird, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Background Levels (Bird) by Month")
+```
+
+In most basins and in most months, background bird pressure levels do not vary greatly. In certain
+basins, it does have a small peak in afternoon (just as with "low" background noise). In general, we
+can thus attribute daily patterns in background noise to non-bird activity.
+
+## Other Indices
+
+Finally, I examined other indices besides ACI (namely, Acoustic Richness and Acoustic Roughness), to
+try and see which gave the most consistent results, and which showed similar patterns. Below are
+the hourly graphs for both acoustic richness (AR) and acoustic roughness (rough), first overall, then
+faceted by month, both colored by basin.
+
+```{r}
+hourly_AR <- d %>%
+  filter(wind == FALSE) %>%
+  group_by(Mo, Hr, Site, basin, fish) %>%
+  summarize(N = length(AR),
+            mean_AR = mean(AR))
+
+ggplot(hourly_AR, aes(x = Hr, y = mean_AR, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(title = "Overall Hourly AR")
+
+ggplot(hourly_AR, aes(x = Hr, y = mean_AR, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Hourly AR by Month")
+
+
+hourly_Rough <- d %>%
+  filter(wind == FALSE) %>%
+  group_by(Mo, Hr, Site, basin, fish) %>%
+  summarize(N = length(Rough),
+            mean_Rough = mean(Rough))
+
+ggplot(hourly_Rough, aes(x = Hr, y = mean_Rough, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(title = "Overall Hourly Roughness")
+
+ggplot(hourly_Rough, aes(x = Hr, y = mean_Rough, colour = basin)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(se = FALSE, method = "loess") +
+  facet_wrap(~Mo) +
+  labs(title = "Hourly Roughness by Month")
+```
+
+AR demonstrated a bizarre pattern - AR was in general very low in the early hours (~5-6am), increasing
+into the afternoon and peaking near midnight. This may be an artifactual error, or it may be due to
+how AR is calculated. Either way, the pattern is fairly consistent across most months and basins 
+(although in Amphitheater basin, the pattern closely resembled a sort of sine wave, with a second
+trough often seen around 6pm). I am not certain exactly how to interpret AR, but this pattern is quite
+different from that of ACI, so I imagine that they are calculated quite differently.
+
+By contrast, roughness tracks almost perfectly with ACI; the overall trends demonstrate a peak in early
+afternoon, and the by-basin trends are near identical to those seen for ACI, with May being the
+exception to the other months in terms of peak activity.
+
+## Conclusions
+
+Based on the plots I have generated, I find it likely that the patterns observed for peak activity
+relative to ACI and roughness are the result of background noise being highest at those times.
+However, this does not explain why May (during breeding season) demonstrates the expected dawn chorus
+trend. If there is a way to disentangle the indices from the background noise, I feel that would give
+a more accurate picture of bird activity.
+
+```{r compare_AI_BKdB}
+
+```
+

@@ -191,6 +191,12 @@ all <- morning %>%
             se = sd_ACI / sqrt(N))
 
 # PLOTS -------------------------------------------------------------------
+# overall histograms of AI
+
+ggplot(morning, aes(ACIout, color = fish)) +
+  geom_histogram(bins = 100) +
+  facet_wrap(~basin)
+
 
 ggplot(center2015, aes(x = day, y = ACIout, colour = fish)) +
   geom_point(alpha = 0.2) +
@@ -202,7 +208,7 @@ ggplot(center2016, aes(x = day, y = ACIout, colour = fish)) +
   labs(x = "day", y = "Acoustic Complexity Index", title = "Daily Average with loess smooth")
 
 
-# graphical representation of mean ACI over time 
+# Graphical representation of mean ACI over time 
 
 ggplot(data = ungroup(daily_ACI_means_2015), aes(x = day, y = mean_ACI, color = fish)) +
   geom_point() +

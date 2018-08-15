@@ -43,7 +43,7 @@ sunrise   = 0 # option to calculate ACI around sunrise... NEED LAT AND LON FOR A
 plt       = 0 # option to plot NVSPL files
 fminimum  = "H1600" #lower limit-- HXXXX represents the center frequency of the octave band...
 #fmaximum  = "H8000" #upper limit-- eg. H1600 = 1413-1778 Hz
-fmaximum  = "H10000" #upper limit-- eg. H1600 = 1413-1778 Hz
+fmaximum  = "H10000" #upper limit-- eg. H10000 = 8913-11220 Hz
 BKfminimum = "H31p5" #lower limit of background noise !!!!!!!NOTE: if NVSPL calculated with PAMGuide, no data below H25! 
 BKfmaximum = "H1250" #upper limit of background noise 
 DayIndex   = "NotDay" #Do you want to calculate ACI for the entire day? #"NotDay" = No, "Day" = Yes 

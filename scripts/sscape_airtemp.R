@@ -4,24 +4,27 @@
 
 rm(list=ls(all=TRUE)) 
 
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-library(plyr)
+library(tidyverse)
 library(lubridate)
+library(chron)
+
+
+# CONCATENATE DATA FROM SM FILES ------------------------------------------
 
 ### CONCATENATE DATA - no need to repeat since complete file is already generated ###
 ### adapted from psychwire.wordpress.com ###
 getwd()
 
-workingDir <- "../data/temps/airtemp/2014"
-filelist <- list.files(workingDir)
-dataset <- do.call("rbind",lapply(filelist,
-                                  FUN=function(files){read.table(files,
-                                                                 header=FALSE, 
-                                                                 col.names = c("date","time","temp","volt","na","na","dunno","dunno","dunno","dunno","dunno","dunno"),
-                                                                 fill=TRUE,
-                                                                 sep="\t")}))
+# workingDir <- "data/temps/airtemp/2015"
+# filelist <- list.files(workingDir)
+# dataset <- do.call("rbind",lapply(filelist,
+#                                   FUN=function(files){read.table(files,
+#                                                                  header=FALSE, 
+#                                                                  col.names = c("date","time","temp","volt","na","na","dunno","dunno","dunno","dunno","dunno","dunno"),
+#                                                                  fill=TRUE,
+#                                                                  sep="\t")}))
+
+
 
 # add a column for site name
 
@@ -38,17 +41,29 @@ temps <- temps[,1:4] # get rid of unwanted columns
 # save CSV of merged temperature data
 write.csv(temps, file = "2014temps.csv")
 
-### PLOT DATA ###
+
+
+# PLOT DATA ---------------------------------------------------------------
 
 # Read and format CSV file #
-temps <- read.csv('/Users/maryclapp/Desktop/2015_SM_Temp/2015temps.csv') #open .csv
+temps <- read.csv('data/temps/airtemp/2015/2015temps.csv') #open .csv
 temps <- temps[,2:6] #get rid of dummy column
 
-temps$date <- as.Date(temps$date, "%Y-%B-%d") #reformat date characters to date format
-temps <- within(temps, { timestamp=format(as.POSIXct(paste(date, time)), "%Y-%m-%d %H:%M:%S") }) #combine date and time into single timestamp
+temps$date <- parse_date_time(temps$date, "mdy") #reformat date characters to date format
+temps$time <- chron(times=temps$time)
 
+temps$timestamp <- parse_date_time(temps$timestamp, "mdy HM")
 temps <- as.data.frame(temps)
 write.csv(temps, file = "2015temps.csv")
+
+# calculate hourly averages/maxima
+
+temps <- temps %>% separate(time, c("Hr", "Min", "Sec"), sep = ":", remove = FALSE)
+by_hr <- temps %>% group_by(site, date, Hr) %>%
+  mutate(hr_avg = mean(temp),
+         hr_min = min(temp),
+         hr_max = max(temp))
+
 
 # Find daily min and max temps for each date and site
 
@@ -64,9 +79,8 @@ ggplot(data = temps, aes(x=timestamp, y=temp))
 
 ### SURVEY EFFORT GRAPHIC ###
 
-
-mydir <- dir("data/temps/airtemp/TEMPDATA_2014")
-
-file_names <- dir("data/temps/airtemp/TEMPDATA_2014") #where you have your files
-d <- do.call(rbind,lapply(file_names,read.csv))
-d$Date <- ymd(d$Date)
+# mydir <- dir("data/temps/airtemp/TEMPDATA_2014")
+# 
+# file_names <- dir("data/temps/airtemp/TEMPDATA_2014") #where you have your files
+# d <- do.call(rbind,lapply(file_names,read.csv))
+# d$Date <- ymd(d$Date)
