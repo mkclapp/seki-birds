@@ -46,6 +46,7 @@ audio$ID <- toupper(audio$ID)
 audio$ID <- str_replace(string = audio$ID, pattern = "RPWR", replacement = "ROWR")
 audio$ID <- str_replace(string = audio$ID, pattern = "INSECTS", replacement = "INSECT")
 
+# all biophonic sounds
 biophony <- filter(audio, ID != "ECHO", !grepl("BAND", ID), !grepl("BACK", ID), !is.na(ID))
 unique(biophony$ID)
 
@@ -62,6 +63,25 @@ sumsum <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) %>%
 
 frank <- merge(sumsum, indices, by = "identifier") #OMG it worked 
 
+# plot against acoustic index 
+# (ACIout = Acoustic Complexity, AR = Acoustic Richness, Rough = Roughness)
 ggplot(frank) + 
   geom_point(aes(x = Rough, y = shannon, color = lake))
 
+# birds only
+unique(birds$ID)
+
+birdcount <- birds %>% group_by(identifier, basin, fish, lake, ID) %>%
+  summarise(n_sounds = n())
+head(birdcount)
+colnames(birdcount)
+sumbirds <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) %>%
+  gather(key = ID, value = soundcount, ... = AMPI:YRWA) %>%
+  group_by(identifier, basin, fish, lake) %>%
+  summarise(shannon = diversity(soundcount, index="shannon"))
+
+frankbirds <- merge(sumbirds, indices, by = "identifier") #OMG it worked 
+
+# plot against acoustic indices
+ggplot(frankbirds) + 
+  geom_point(aes(x = ACIout, y = shannon, color = lake))

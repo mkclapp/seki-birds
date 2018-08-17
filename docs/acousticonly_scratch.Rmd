@@ -1,0 +1,30 @@
+---
+title: "acousticexplore"
+author: "Mary Clapp"
+date: "8/17/2018"
+output: html_document
+---
+
+### ACOUSTIC DATA
+Species Richness 
+```{r listening_data, eval=FALSE}
+ggplot(summary, aes(x=basin, y=sp_rich, color = fish)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = sp_rich - se, ymax = sp_rich + se), width = 0.2) + 
+  labs(x = "basin", y = "average species richness", title = "Species Richness by 10-min sample")
+```
+Calling Activity
+The following plot shows mean calling activity between fishless and fish-containing lakes. Worth noting that GCRF vocalize far more at fish-containing lakes, but were more abundant at fishless ones in the point count data.
+```{r call_activity}
+ggplot(foostats, aes(x=spec_name, y=mean, fill=fish)) +
+  geom_bar(stat="identity", position = position_dodge(), width=0.6) +
+  geom_errorbar(position=position_dodge(),
+                aes(ymin = mean-sem, ymax = mean+sem, width = 0.6)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title="Mean # of seconds per 10-minute recording a bird is singing", 
+              x="species", 
+              y="mean count of individuals +/- s.e.m.") +
+  scale_fill_discrete(name="lake type")
+```
+

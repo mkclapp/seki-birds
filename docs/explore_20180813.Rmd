@@ -1,41 +1,127 @@
 ---
-title: "exploring_acoustic_data"
+title: "Exploring Acoustic Data"
 author: "Mary Clapp"
 date: "8/13/2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(lubridate)
 library(chron)
 library(plotrix)
-
-
+library(lme4)
 ```
+
+# My Project
+
+I am studying the impacts of introduced trout in high-elevation lakes on adjacent bird and bat communities in the Sierra Nevada, CA. This document summarizes data collected in relation to the bird community in particular. 
+
+I chose to survey for birds at pairs of fish-containing and fishless lakes throughout Sequoia/Kings Canyon National Parks. Each pair of lakes resides in the same headwater basin. Basins are several kilometers apart, and the two lakes that comprise a pair are >500m apart. I surveyed only permanent lake bodies deeper than 3 meters, and above 3000 meters in elevation.
+
+### Methods
+
+At a randomly-generated location at each lakeside, I placed a solar-powered autonomous recording unit (SongMeter2+, made by Wildlife Acoustics) to record continuously for bird activity throughout the summer months. 
+
+I also performed multi-species point counts around the lake shore. The number of point count surveys per lake varies by lake size, as I placed points every 300 meters along the lake shore. The largest lakes had 5 points, and the smallest lakes had only 1. I performed at least two rounds of surveys at each lake per summer.
+
+There are two types of data I'll be presenting below: 1) point count data and 2) data from 98 10-minute audio clips randomly sampled from my acoustic database. But before we get to those, I need to load several tables of covariates and supporting information that are relevant for one or both datasets. 
+
+### Supporting Information
+`lake_info`: information about some environmental variables at each lake. Namely, elevation and lake area.
+`spec_names`: a dataframe with two columns: one containing the AOU 4-letter codes for each species in my dataset, and the other containing full names. For graphing purposes.
+`rec_summary`: a basic summary of how many 10-minute samples per location (and thus how many total seconds, minutes were sampled) were used in the `audio` dataset.
+
+```{r supp mat,include=FALSE}
+lakeinfo <- read_csv("../data/lakeinfo.csv", col_names = TRUE)
+
+spec_names <- read_csv("../data/species_names.csv") 
+
+rec_summary <- read_csv("../data/100listens_recsummary.csv")
+```
+
+Now, the point count data!
 
 ## POINT COUNT DATA
-Median **Species Richness** per point for all surveys 2014-2016. Survey number varies by lake. First graph shows all detections within 300m of the count; the second graph shows all detections within 50m of the count.
-```{r pressure, echo=FALSE}
-ggplot(data = e300) +
-  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
-  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2014-2016") +
-  facet_wrap(~basin) +
-  theme_light()
+
+```{r ptct tidying, include=FALSE}
+d <- read.csv(file = "../data/PointCountData_Master copy.csv")
+colnames(d) <- tolower(colnames(d))
+d$date <- mdy(d$date)
+d$fish <- factor(ifelse(d$fish == 1, "fishless", "fish"))
+
+## rename basin names to look pretty later
+d$basin <- tolower(d$basin)
+d$basin <- sub("eastla", "East Lake", d$basin, ignore.case =FALSE, fixed=FALSE)
+d$basin <- sub("center", "Center", d$basin, ignore.case =FALSE, fixed=FALSE)
+d$basin <- sub("amphit", "Amphitheater", d$basin, ignore.case =FALSE, fixed=FALSE)
+d$basin <- sub("wright", "Wright Lakes", d$basin, ignore.case =FALSE, fixed=FALSE)
+d$basin <- sub("upkern", "Upper Kern", d$basin, ignore.case =FALSE, fixed=FALSE)
+d$basin <- sub("barret", "Barrett Lakes", d$basin, ignore.case =FALSE, fixed=FALSE)
+
+## fix case issues in species and location columns
+d$species <- toupper(d$species)
+d$location <- toupper(d$location)
+
+## set basin as a factor
+d$basin <-as.factor(d$basin)
+
+## change all entries with > to 500m and FO to NA 
+d$distance <- as.character(d$distance)
+d$distance[regexpr(">", d$distance) != -1] <- "500"
+d$distance[regexpr("FO", d$distance) != -1] <- "NA"
+d$distance <- as.integer(d$distance) 
+
+# add a column for julian day
+d$jday <- yday(d$date)
+
+# merge the point count data with spec_names for plotting 
+d <- merge(d, spec_names, by = "species")
+# d$sm_temp <- as.numeric(paste(d$sm_temp))
+
+# d300 filters the full dataset down to birds detected within 300m and species IDed with 100% certainty.
+# NOTE that it is also possible to filter out double-counted individuals-- that's only appropriate if your goal is to aggregate all points per lake and report data by lake. It's technically more kosher to include double-counted birds when you're presenting results per-point.
+d300 <- d %>% filter(distance < 300 
+                     #& doublecount == ""
+                     & year == "2015"
+                     & species != "XXXX" & species !="XXSP" & species != "XXHU")
+d300 <- merge(d300, elev, by.x = "location", by.y = "lake", all.y=FALSE)
+# this removes BARRETX and that's ok with me for now
+```
+The table below describes point count survey effort for the year 2015, as well as some lake characteristics.
+```{r ptct survey effort, include=FALSE}
+effort <- d300 %>% select(year, basin, location, fish, date, visit, point) %>%
+  group_by(year, location, fish) %>%
+  summarise(n_visits = n_distinct(visit),
+            n_points = n_distinct(point))
+effort <- merge(effort, lakeinfo, by.x = "location", by.y = "lake")
+
+effort
 ```
 
-Median **Abundance** (number of individuals counted) per point for all surveys 2014-2016.
+Below, *abundance per species according to point count surveys.* I did not include surveys from 2014, because my point counts were only 5 minutes long that year. Number of points per lake varies by lake (as demonstrated above). First graph shows all detections within 300m of the count; the second graph shows all detections within 50m of the count.
 ```{r abundance, echo=FALSE}
-ggplot(data = e300) +
-  geom_boxplot(aes(x=fish, y=total, color=fish)) +
-  labs(x="treatment", y="number of birds detected", title="Bird Abundance within 300m, 2014-2016") +
-  facet_wrap(~basin) +
-  theme_light()
-```
+pt300 <- d300 %>% group_by(basin, fish, location, date, point, time, jday) %>% 
+  summarize(nspecies=n_distinct(species), total=n())
 
-Mean abundance per species per point for all surveys 2014-2016. 
-```{r by-species, echo=FALSE}
+spec <- d300 %>% 
+  group_by(basin, fish, location, date, point, species) %>% 
+  summarize(count=n())
+
+## spread and gather give an entry for each species in the species pool, even if count = 0
+spec <- spread(data = spec, key=species, value=count, fill=0)
+spec <- gather(data = spec, key = species, ... = AMPI:YRWA) 
+
+spec_stats_fish <- spec %>% group_by(fish, species) %>%
+  summarise(num_surveys = n(),
+            mean_count = mean(value),
+            median_count = median(value),
+            sd_count = sd(value),
+            se_count = std.error(value))
+
+spec_stats_fish <- merge(spec_stats_fish, spec_names, by = "species")
+
 ggplot(spec_stats_fish, aes(x=spec_name, y=mean_count, fill=fish)) +
   geom_bar(stat="identity", position=position_dodge(), width = 0.6) +
   geom_errorbar(position=position_dodge(),
@@ -43,39 +129,64 @@ ggplot(spec_stats_fish, aes(x=spec_name, y=mean_count, fill=fish)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals per point, all years")
 ```
-I also looked at 2015 only-- no significant differences in the trends (/lack thereof).
+The following graph uses only data collected on the point count at the SongMeter-- to see how congruent it is with the lake-wide data points, as well as with the microphone-collected data (next section).
+```{r SM only}
+ spec_sm <- d300 %>% 
+  filter(point=="1") %>%
+  group_by(basin, fish, date, species) %>% 
+  summarize(count=n())
 
-The following graph uses only data collected on the point count at the SongMeter-- to see how congurent it is with the lake-wide data points, as well as with the microphone-collected data (next section).
-```{r SM_only, eval=FALSE}
-ggplot(spec_sm_stats, aes(x=species, y=mean_count, fill=fish)) +
+# the following spread/gather gives counts for each species for each date for each lake type
+# NOT individual lakes!
+spec_sm <- spread(data = spec_sm, key = species, value = count, fill = 0)
+spec_sm <- gather(data = spec_sm, key = species, ... = AMPI:YRWA) 
+
+spec_sm <- merge(spec_sm, spec_names, by = "species")
+
+spec_sm_stats <- spec_sm %>% group_by(fish, spec_name) %>%
+  summarise(num_surveys = n(),
+            mean_count = mean(value),
+            median_count = median(value),
+            sd_count = sd(value),
+            se_count = std.error(value))
+
+ggplot(spec_sm_stats, aes(x=spec_name, y=mean_count, fill=fish)) +
   geom_bar(stat="identity", position=position_dodge(), width = 0.6) + 
   geom_errorbar(position=position_dodge(), 
                 aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6)) +
-  labs(title="Mean counts of birds within 300m of SongMeter point, 2014-2016", 
-       x="Species", 
-       y="mean count of individuals +/- s.e.m.")
-```
-
-### ACOUSTIC DATA
-Species Richness 
-```{r listening_data, eval=FALSE}
-ggplot(summary, aes(x=basin, y=sp_rich, color = fish)) +
-  geom_point() +
-  geom_errorbar(aes(ymin = sp_rich - se, ymax = sp_rich + se), width = 0.2) + 
-  labs(x = "basin", y = "average species richness", title = "Species Richness by 10-min sample")
-```
-Calling Activity
-The following plot shows mean calling activity between fishless and fish-containing lakes. Worth noting that GCRF vocalize far more at fish-containing lakes, but were more abundant at fishless ones in the point count data.
-```{r call_activity}
-ggplot(foostats, aes(x=spec_name, y=mean, fill=fish)) +
-  geom_bar(stat="identity", position = position_dodge(), width=0.6) +
-  geom_errorbar(position=position_dodge(),
-                aes(ymin = mean-sem, ymax = mean+sem, width = 0.6)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title="Mean # of seconds per 10-minute recording a bird is singing", 
-              x="species", 
-              y="mean count of individuals +/- s.e.m.") +
-  scale_fill_discrete(name="lake type")
+  labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals at SongMeter point, year 2015")
 ```
 
+And here, median species richness per point count survey per basin, and then aggregated by lake type. 
+```{r ptct sprich}
+ggplot(data = pt300) +
+  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
+  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2015") +
+  facet_wrap(~basin) +
+  theme_bw()
+
+ggplot(data = pt300) +
+  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
+  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2015")
+  theme_bw()
+```
+Looks like some basins show no effect of fish on species richness (Amphitheater, Upper Kern), one shows a positive effect of species richness (Wright), and two show a negative effect (Barrett, Center). Across basins, there appears to be no significant difference-- but the fact that basins differ in the direction/magnitude of response hints that there are other environmental factors at play. Thus, we need to model taking as many of those factors into account as possible. Some candidates that immediately come to mind are: elevation, time of day, and time of year (Julian day). Bird activity is known to vary across each of these axes, and my data represent some variation in all of them. 
+
+```{r covariate biplots}
+ptct <- d300 %>% 
+  group_by(basin, fish, location, date, jday, time, point, elev_m, sm_temp) %>%
+  summarise(n_spec = n_distinct(spec_name), 
+            abundance = n())
+
+ggplot()
+```
+
+The first model I'll build will focus on species richness only. **MODELS CURRENTLY NOT RUNNING**
+
+```{r pt ct modeling, eval=FALSE}
+# elev needs to be scaled because the numbers are so big:
+ptct$elev_m.s <- scale(ptct$elev_m)
+ptct_m1 <- glmer(n_spec ~ fish + elev_m.s + (1|basin/lake), family = poisson, data = ptct, glmerControl(calc.derivs = F))
+```

@@ -7,9 +7,14 @@ library(lme4)
 library(tidyverse)
 library(lubridate)
 library(chron)
+library(iNEXT)
+
+# Supplemental tables
+lakeinfo <- read_csv("../data/lakeinfo.csv", col_names = TRUE)
+spec_names <- read_csv("../data/species_names.csv") 
 
 
-# tidying data ------------------------------------------------------------
+# Tidying Raw Data (only needs to be done once) ---------------------------
 
 ## load data and clean
 d <- read.csv(file = "data/PointCountData_Master copy.csv")
@@ -52,55 +57,53 @@ spec_names <- c("American Pipit", "American Robin", "Brewer's Blackbird", "Cassi
                 "Unidentified Sparrow", "Unidentified Bird", "Yellow-Rumped Warbler")
 spec_names <- as.data.frame(cbind(spec_names, spec_AOU))
 colnames(spec_names) <- c("spec_name", "species")
+write_csv(spec_names, path = "data/species_names.csv")
 
-#d <- merge(d, spec_names, by.x = "species", by.y = "spec_AOU") # this worked
+d <- merge(d, spec_names, by = "species")
+# d$sm_temp <- as.numeric(paste(d$sm_temp))
 
+write_csv(d, path = "data/pointcount_20180816.csv")
+
+# read in cleaned up point count csv (written to file 2018-08-16) ---------
+#d <- read_csv("data/pointcount_20180816.csv")
 ## exploratory plots of species richness and abundance ---------------------
 
 ## restrict distance; exclude double-counts and unidentified species
-d300 <- d %>% filter(distance < 300 & doublecount == "" & species != "XXXX" & species !="XXSP" & species != "XXHU")
+d300 <- d %>% filter(distance < 300 & species != "XXXX" & species !="XXSP" & species != "XXHU")
 d150 <- d %>% filter(distance < 150 & doublecount == "" & species != "XXXX" & species !="XXSP" & species != "XXHU")
 d100 <- d %>% filter(distance < 100 & doublecount == "" & species != "XXXX" & species !="XXSP" & species != "XXHU")
 d50 <- d %>% filter(distance < 50 & doublecount == "" & species != "XXXX" & species !="XXSP" & species != "XXHU")
 
 ## e summarises species richness and abundance PER POINT
-e300 <- d300 %>% group_by(basin, fish, location, date, point, time, jday) %>% 
+pt300 <- d300 %>% group_by(basin, fish, location, date, point, time, jday) %>% 
   summarize(nspecies=n_distinct(species), total=n())
 
-e150 <- d150 %>% group_by(basin, fish, date, point, time, jday) %>% 
+pt150 <- d150 %>% group_by(basin, fish, date, point, time, jday) %>% 
   summarize(nspecies=n_distinct(species), total=n())
 
-e100 <- d100 %>% group_by(basin, fish, date, point, time, jday) %>% 
+pt100 <- d100 %>% group_by(basin, fish, date, point, time, jday) %>% 
   summarize(nspecies=n_distinct(species), total=n())
 
-e50 <- d50 %>% group_by(basin, fish, date, point, time, jday) %>% 
+pt50 <- d50 %>% group_by(basin, fish, date, point, time, jday) %>% 
   summarize(nspecies=n_distinct(species), total=n())
 
 ### relationship of abundance and sp.rich. with time of day
 ## species richness and time of morning
-plot(nspecies~time, data=e300, ylab = "species richness within 300 m")
-lm <- lm(nspecies~time, data=e300)
-abline(lm)
-summary(lm)
-plot(lm)
+ggplot()
 
 # abundance and time of morning
-plot(total~time, data=e300, ylab = "number of birds within 300 m")
-lm2 <- lm(total~time, data=e300)
-abline(lm2)
+ggplot(pt300,aes(x=time, y=total)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~basin)
 
 ### relationship with date of year
 ## first make julian day column
 
-plot(total~jday, data=e300)
-lm3 <- lm(total~jday, data=e300)
-abline(lm3)
-plot(lm3)
-summary(lm3)
-
-plot(nspecies~jday, data=e300, xlab = "Julian day", ylab = "species richness within 300 m")
-lm4 <- lm(nspecies~jday, data=e300)
-abline(lm4)
+ggplot(pt300,aes(x=jday, y=total)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  facet_wrap(~basin)
 
 plot(nspecies~fish, data=e50)
 plot(total~fish, data=e50)
@@ -115,9 +118,9 @@ ggplot(d300, aes(x=distance)) +
 
 ## species richness
 ## boxplots represent medians, 25% and 75% quantiles.
-# e300 %>%
+# pt300 %>%
 #   filter(year(date)=="2016") %>%
-ggplot(data = e300) +
+ggplot(data = pt300) +
   geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
   labs(x="treatment", y="species richness", title="Species Richness within 300m, 2014-2016") +
   facet_wrap(~basin) +
@@ -125,7 +128,7 @@ ggplot(data = e300) +
 
 # trying to coerce the boxplots to means and SE
 
-e300 %>% group_by(basin, fish, location) %>%
+pt300 %>% group_by(basin, fish, location) %>%
   summarise(n_surveys=n(),
             mean_sprich=mean(nspecies),
             sd_count = sd(nspecies),
@@ -133,7 +136,7 @@ e300 %>% group_by(basin, fish, location) %>%
             
 ## abundance 
 
-ggplot(data = e300) +
+ggplot(data = pt300) +
   geom_boxplot(aes(x=fish, y=total, color=fish)) +
   labs(x="treatment", y="number of birds detected", title="Bird Abundance within 300m, 2014-2016") +
   facet_wrap(~basin) +
@@ -152,8 +155,6 @@ ggplot(data = e50) +
   theme_light()
 
 # plots by species --------------------------------------------------------
-
-
 
 ## spec summarizes by entire point count, not just the songmeter point
 spec <- d300 %>% 
@@ -240,8 +241,6 @@ spec_sm_stats <- spec_sm %>% group_by(fish, spec_name) %>%
             sd_count = sd(value),
             se_count = std.error(value))
 
-
-
 ggplot(spec_sm_stats, aes(x=spec_name, y=mean_count, fill=fish)) +
   geom_bar(stat="identity", position=position_dodge(), width = 0.6) + 
   geom_errorbar(position=position_dodge(), 
@@ -250,8 +249,20 @@ ggplot(spec_sm_stats, aes(x=spec_name, y=mean_count, fill=fish)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals at SongMeter point, year 2015")
 
-  
-# try for a single lake pair
+
+# GLMS --------------------------------------------------------------------
+
+ptct <- d300 %>% 
+  group_by(basin, fish, location, date, jday, time, point, elev_m, sm_temp) %>%
+  summarise(n_spec = n_distinct(spec_name), 
+            abundance = n())
+
+#The first model I'll build will focus on species richness only. **MODELS CURRENTLY NOT RUNNING**
+# elev needs to be scaled because the numbers are so big:
+ptct$elev_m.s <- scale(ptct$elev_m)
+ptct_m1 <- glmer(n_spec ~ fish + elev_m.s + (1|basin/lake), family = poisson, data = ptct, glmerControl(calc.derivs = F))
+
+# summaries separated by basin --------------------------------------------
 
 spec_center <- d300 %>% 
   filter(point=="1" & basin=="Center") %>%
@@ -323,7 +334,7 @@ ggplot(spec_upkern_stats, aes(x=species, y=mean_count, fill=fish)) +
        y="mean count of individuals +/- s.e.m.")
 
 
-
+# OLD CODE ----------------------------------------------------------------
 
 # trying to present different summary stats for easier legibility
 
@@ -352,6 +363,8 @@ plot(nspecies~fish, data=abdd)
 spec2015 <- d %>% filter(date > "2015-06-07" & date < "2015-07-06" & distance < 151 & doublecount == "") %>% 
   group_by(basin, fish, species) %>% 
   summarize(nspecies=n_distinct(species), total=n())
+
+
 
 # basic bar graph of bird counts by species by basin ## THIS IS WRONG-- DOESN'T GIVE TRUE COUNT VALUES ##
 b <- ggplot(spec2015, aes(x=species, y=total, fill=fish)) + 
@@ -436,11 +449,3 @@ sprich <- ggplot(abdd) + geom_boxplot(aes(x=fish, y=nspecies, fill=fish)) +
   expand_limits(y=0)
 
 sprich
-
-# this is the baseR code to accomplish the above
-# unsurprisingly, t-tests say there's no significant difference
-plot(nspecies ~ fish, data=abdd)
-t.test(nspecies ~ fish, data = abdd)
-
-plot(total~fish, data=abdd)
-t.test(total~fish, data=abdd)

@@ -1,0 +1,4 @@
+Selection	View	Channel	Begin Clock Time	Begin Time (s)	End Time (s)	Delta Time (s)	Freq 5% (Hz)	Freq 95% (Hz)	Center Freq (Hz)	Avg Power (dB)	Max Power (dB)	Energy (dB)	Begin Date Time	Begin Path	Begin File	File Offset (s)	Low Freq (Hz)	High Freq (Hz)	ID	NOTES
+1	Spectrogram 1	1	246.516	246.516168006	246.792381522	0.276	6843.8	8156.2	7218.8	23.9	41.8	50.8	246.516	/Users/mary/Desktop/listens_20180309/completed_listens/file5e57f5dccf5.wav	file5e57f5dccf5.wav	246.516	6575.8	8416.5	WCSP	*
+2	Spectrogram 1	1	247.372	247.372429908	247.621022073	0.249	6843.8	7968.8	7125.0	26.0	44.1	51.9	247.372	/Users/mary/Desktop/listens_20180309/completed_listens/file5e57f5dccf5.wav	file5e57f5dccf5.wav	247.372	6636.4	8242.4	WCSP	*
+3	Spectrogram 1	1	439.673	439.672783614	442.103462562	2.431	1500.0	8156.2	2250.0	26.4	45.4	70.1	439.673	/Users/mary/Desktop/listens_20180309/completed_listens/file5e57f5dccf5.wav	file5e57f5dccf5.wav	439.673	1413.0	11220.0	background	1413-11220

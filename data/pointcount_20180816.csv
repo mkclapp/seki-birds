@@ -1,0 +1,720 @@
+species,year,basin,location,fish,date,visit,point,time,air,sun,wind,detect,distance,doublecount,flycatch,last3,obs,sm_temp,jday,spec_name
+AMPI,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,V,19,,,Y,INSECT IN BILL,12.7,185,American Pipit
+AMPI,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,V,53,,,,ON SHORE,14.3,202,American Pipit
+AMPI,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,V,31,,,,NM CARRY OR FOOD CARRY,3.1,173,American Pipit
+AMPI,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,C,105,,,,FLEDGLINGS WITH AMPI ABOVE,14.3,202,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,4,819,4,0,4,C,15,3,,,ALARM CALL,9.8,160,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,C,65,,,,,21.7,158,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,C,60,,,,IN TALUS,4.1,153,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),C,22,,,,ALARM CALL,7.4,160,American Pipit
+AMPI,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,c,100,,,,,12,189,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,C,160,1,,,,ND,185,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,Y,,13.8,174,American Pipit
+AMPI,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,C,205,2,,,,ND,158,American Pipit
+AMPI,2014,Center,CENTER2,fish,2014-06-25,1,2,812,,na,0,V,68,,Y,,,9.8,176,American Pipit
+AMPI,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,C,105,,,,FLEDGLINGS WITH AMPI ABOVE,14.3,202,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,V,45,,,,,13.3,185,American Pipit
+AMPI,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,V,38,,,,,ND,158,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,c ,NA,,,y,,ND,159,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,,,13.8,174,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,V,7,,,,HUGE FOOD CARRY- INSECTS! FLEW TOWARD POINT 4,ND,188,American Pipit
+AMPI,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,V,16,,,,FC,26.2,202,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,V,29,,,,GROUP-- ALSO CALLED. FLEW TO OTHER SIDE OF LAKE AND BACK,0.9,153,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),C,88,,,,GROUP. 2 BIRDS FIGHTING(?) IN MIDAIR,3.7,133,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,C,31,,,Y,CALLING WITH AMPI ABOVE,ND,188,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,S,96,,,,,13.3,185,American Pipit
+AMPI,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,C,41,,,,,11.7,189,American Pipit
+AMPI,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,V,27,,,,,18.8,176,American Pipit
+AMPI,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,2,713,2,1,3.5,V,180,,,,FORAGING ON ICE IN MIDDLE OF LAKE!,4.4,158,American Pipit
+AMPI,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,V,75,,,,FLEW OVER LAKE,3.4,173,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,V,12,,,Y,,13.3,185,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,C,60,,,,IN TALUS,4.1,153,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,v,5,,,,foraging on shoreline,4.1,188,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-06-07,1,1,703,,0,2,c ,300,,,,across lake,ND,159,American Pipit
+AMPI,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,C,55,,,,,12.3,153,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,C,20,3,,,"SINGLE CALLS, REPEATED CIRCULAR FLIGHTS",ND,188,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,C,65,,,,VERY HIGH FLIGHT,ND,185,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-07-06,2,2,810,,1,0,v,30,,,y,foraging on grass,8.9,188,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,V,29,,,,GROUP-- ALSO CALLED. FLEW TO OTHER SIDE OF LAKE AND BACK,0.9,153,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,V,29,,,,GROUP-- ALSO CALLED. FLEW TO OTHER SIDE OF LAKE AND BACK,0.9,153,American Pipit
+AMPI,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,C,500,,,Y,ACROSS LAKE,12.7,185,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,C,105,,,,PEW PEW ALARM CALLS,ND,188,American Pipit
+AMPI,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,C,310,,,Y,,ND,185,American Pipit
+AMPI,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,V,75,,,,FLEW OVER LAKE,3.4,173,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,v,5,,,,foraging on shoreline,4.1,188,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,S,29,,,,,18.3,158,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),C,88,,,,GROUP. 2 BIRDS FIGHTING(?) IN MIDAIR,3.7,133,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,,,13.8,174,American Pipit
+AMPI,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,2,744,3,1,2(4),C,220,,,,,8.2,160,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-07-18,4,4,827,10,1,4,C,61,,,Y,ON TALUS TO WEST,10.5,199,American Pipit
+AMPI,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,c,100,,,,,12,189,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,102,,,Y,,6.7,199,American Pipit
+AMPI,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,V,67,,,,SITTING ON ROCK,3.1,173,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,,,13.8,174,American Pipit
+AMPI,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,41,,,,,ND,185,American Pipit
+AMPI,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,S,300,,,,,10.5,189,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),C,88,,,,GROUP. 2 BIRDS FIGHTING(?) IN MIDAIR,3.7,133,American Pipit
+AMPI,2016,Center,CENTER2,fish,2016-07-06,2,2,810,,1,0,v,30,,,y,foraging on grass,8.9,188,American Pipit
+AMPI,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,36,,,,FLEDGLING?,ND,185,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,23,,,,,ND,185,American Pipit
+AMPI,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,c,100,,,,,12,189,American Pipit
+AMPI,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,S,300,Y,,,,11.3,189,American Pipit
+AMPI,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),C,88,,,,GROUP. 2 BIRDS FIGHTING(?) IN MIDAIR,3.7,133,American Pipit
+AMPI,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,C,65,,,,,21.7,158,American Pipit
+AMRO,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,V,12,,,,,0.4,153,American Robin
+AMRO,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,V,130,,,,"PAIR NEAR LAKE, FAR SIDE",4.9,174,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,v,26,y,,,,6.2,188,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,1,703,,0,2,s,200,2,,,,ND,159,American Robin
+AMRO,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,V,23,,,,ON SHORE,17.1,174,American Robin
+AMRO,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,V,130,,,,"PAIR NEAR LAKE, FAR SIDE",4.9,174,American Robin
+AMRO,2014,Center,CENTER2,fish,2014-06-25,1,2,812,,na,0,S,300,Y,,,,9.8,176,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,80,,,y,,ND,159,American Robin
+AMRO,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,11,2,,,,5.2,174,American Robin
+AMRO,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,90,,,,,5.2,174,American Robin
+AMRO,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,49,,,,,0.4,153,American Robin
+AMRO,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,S,72,,,,,8.7,176,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,v,1,,,,food carry,4.6,188,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,69,,,,,ND,159,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,v,91,,,,,ND,159,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,c ,91,3,,,,ND,159,American Robin
+AMRO,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,S,185,,,,,8.7,176,American Robin
+AMRO,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,85,,,,,13,189,American Robin
+AMRO,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,C,200,,,,,23.7,159,American Robin
+AMRO,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,S,59,,,,,0.1,153,American Robin
+AMRO,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,v,91,,,,,ND,159,American Robin
+BRBL,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,1,651,7,1,2(4),V,62,,,Y,FORAGING ON SHORELINE,9.2,171,Brewer's Blackbird
+CAFI,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,NA,,,,,5.2,174,Cassin's Finch
+CAFI,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,NA,,,,,5.2,174,Cassin's Finch
+CAFI,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,c,71,,,,begging call,4.6,188,Cassin's Finch
+CAFI,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,80,,,,,9.2,153,Cassin's Finch
+CAFI,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,61,,,,,13.8,174,Cassin's Finch
+CAFI,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,90,,,Y,,32.2,187,Cassin's Finch
+CAFI,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,NA,,,,,5.2,174,Cassin's Finch
+CAFI,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,105,y,,,,6.2,188,Cassin's Finch
+CAFI,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,NA,,,,,5.2,174,Cassin's Finch
+CHSP,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,s,80,,,,,4.6,188,Chipping Sparrow
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,c,300,2,,,,23.7,159,Clark's Nutcracker
+CLNU,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,V,28,,,,,18.6,176,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,c,300,,,,,20.1,159,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,V,32,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,C,300,,,,,10.5,189,Clark's Nutcracker
+CLNU,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,C,205,,,,,13.5,176,Clark's Nutcracker
+CLNU,2014,Center,CENTER2,fish,2014-06-25,1,4,900,,na,0,C,300,,,,,15.6,176,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,C,95,,,,,9.2,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,220,,,,,5.2,174,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,c,250,,,,,23.7,159,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,V,48,,,,,7.2,198,Clark's Nutcracker
+CLNU,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,V,61,,,,,18.8,176,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,C,160,3,,,,32.2,187,Clark's Nutcracker
+CLNU,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,C,205,,,,,13.5,176,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,V,27,,,,HOPPING BY WATER,ND,133,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,C,500,4,,,,23.4,187,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,C,82,,,,,ND,133,Clark's Nutcracker
+CLNU,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,C,155,,,,,26.2,202,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,c,100,,,,,13,189,Clark's Nutcracker
+CLNU,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,V,90,,,,,18.8,176,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,C,65,,,,,4.4,198,Clark's Nutcracker
+CLNU,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,C,215,,,,W SIDE OF LAKE (SUN),7.2,199,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,c,210,,,,,12.2,189,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,c,25,,,,,16.6,187,Clark's Nutcracker
+CLNU,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,C,40,,,,,18.6,176,Clark's Nutcracker
+CLNU,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,180,,,,uphill,6.2,188,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,C,70,,,,,4.9,174,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,4,838,3,1,2.5,C,210,,,,,28.4,159,Clark's Nutcracker
+CLNU,2014,East Lake,EASTLA1,fishless,2014-06-21,1,1,714,8,0,1,C,300,,,,,8,172,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,C,99,1,,,,7.2,198,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,4,735,8,0,0,C,500,5,,,,23.4,187,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,c,300,,,,,20.1,159,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,V,29,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,c,210,,,,,12.2,189,Clark's Nutcracker
+CLNU,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),V,230,,,,,ND,174,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,c,300,,,,,20.1,159,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,35,y,,,,26.9,187,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,v,20,,,,foraging on shore,23.7,159,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,C,15,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,v,95,,,,flew away,20.1,159,Clark's Nutcracker
+CLNU,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,C,500,,,,,13.6,158,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,C,500,,,,,23.7,159,Clark's Nutcracker
+CLNU,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,v,51,,,,,ND,159,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,C,500,,,,,33.1,187,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,V,2,,,,HUNTING ON SHORE,9.2,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,V,44,,,,THEN CALLED,0.4,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,V,44,,,,THEN CALLED,0.4,153,Clark's Nutcracker
+CLNU,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,C,100,,,,,13.3,185,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,35,y,,,,26.9,187,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,V,31,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,C,20,,,,,4.4,198,Clark's Nutcracker
+CLNU,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,C,40,,,,,18.6,176,Clark's Nutcracker
+CLNU,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,C,89,,,,,25.4,203,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,C,15,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,C,95,,,,,9.2,153,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,c,40,,,,,23.7,159,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,c,210,,,,,12.2,189,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,c ,300,2,,,,23.7,159,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,c,19,,,,,16.6,187,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,95,y,,,,26.9,187,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,5,712,8,1,0,C,500,,,,ON N SIDE OF LAKE,12,187,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,2,654,15,na,0,c,250,y,,,,12.8,189,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,c,300,,,,,20.1,159,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,220,,,,,5.2,174,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,40,,,,,5.2,174,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,V,30,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,C,15,,,,"GROUP: FORAGING ON SHORE, CALLING IN TREES",12.3,153,Clark's Nutcracker
+CLNU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,C,160,1,,,,32.2,187,Clark's Nutcracker
+CLNU,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,C,200,,,,,13.8,174,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,c,300,,,,,12,189,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,c,65,,,,,23.7,159,Clark's Nutcracker
+CLNU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,95,y,,,,26.9,187,Clark's Nutcracker
+CLNU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,c,300,,,,,12,189,Clark's Nutcracker
+DEJU,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,S,200,,,,,18.6,176,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-07-18,4,3,810,9,1,4(5),V,59,,,,,9.2,199,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,200,,,,,16.6,187,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,C,58,,,Y,,21.7,158,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,40,,,,along shoreline,26.9,187,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,160,,,,pair with below,16.6,187,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,69,,,,,12.7,185,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,V,61,,,,PARENT W/ OFFSPRING,7.2,198,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,V,16,,,,PARENT W/ OFFSPRING?,7.2,198,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,S,110,,,,,ND,185,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,S,45,,,,,5.2,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,40,,,,,13.8,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,V,33,,,Y,PAIR,17.1,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,C,39,,,,ON SANDY E SHORE,ND,133,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,V,38,,,,PAIR,4.4,198,Dark-eyed Junco
+DEJU,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,S,135,,,,,18.8,176,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,C,29,,,,,7.2,199,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,S,30,3,,,,17.1,174,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),V,6,,,,PAIR FORAGING ON GRASS,7.4,160,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA2,fish,2014-06-22,1,1,813,na,na,0,S,38,,,,,16.5,173,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA2,fish,2014-06-22,1,1,813,na,na,0,V,52,,,,,16.5,173,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,S,210,,,,,ND,158,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,V,11,,,Y,PAIR,9.2,153,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,82,2,,,,12.3,153,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,115,,,y,,20.1,159,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,150,,,,,13.8,174,Dark-eyed Junco
+DEJU,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,S,140,,,,,3.1,173,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,48,,,,,23.7,159,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA2,fish,2014-06-22,1,2,851,na,na,0,S,17,,,,,15.1,173,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,S,61,,,,PARENT W/ OFFSPRING,7.2,198,Dark-eyed Junco
+DEJU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,150,,,,,13,189,Dark-eyed Junco
+DEJU,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,s ,110,,,,,ND,159,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,C,13,,,,,4.1,153,Dark-eyed Junco
+DEJU,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,61,,,,,ND,159,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,C,115,,,,,32.2,187,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,S,51,,,Y,,4.4,198,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,S,21,,,,,7.2,198,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,v,80,,,,,26.9,187,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,150,,,,by outlet,16.6,187,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,C,13,,,,BEHIND SM TREE,7.2,199,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,V,33,,,Y,PAIR,17.1,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,190,,,,,9.2,153,Dark-eyed Junco
+DEJU,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,200,,,,,12.2,189,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,19,,,,,17.1,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,6,,,,,0.4,153,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),V,6,,,,PAIR FORAGING ON GRASS,7.4,160,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA2,fish,2014-06-22,1,1,813,na,na,0,S,40,,,,,16.5,173,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,v,70,,,,flying through woods,20.1,159,Dark-eyed Junco
+DEJU,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,V,72,,,,FORAGING ON GRASS NEAR SHORE,25.4,203,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,170,,,Y,,12.7,185,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,V,11,,,Y,PAIR,9.2,153,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,V,30,,,,,0.4,153,Dark-eyed Junco
+DEJU,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,s,200,,,,"very faint, could be chsp",6.2,188,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,S,75,,,,,8,172,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,100,,,,ACROSS LAKE,ND,133,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,9,,,,IN CAMP TREE,33.1,187,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,68,,,,,9.2,153,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,v,160,,,,by willows near sticky traps,16.6,187,Dark-eyed Junco
+DEJU,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,v,7,,,,foraging in grass,4.6,188,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,C,13,,,,,4.1,153,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,115,,,,,20.1,159,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,49,1,,,,32.2,187,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,S,52,,,,,13.3,185,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,29,,,,,5.2,174,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,S,79,,,,,13.3,185,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,V,16,,,,,0.1,153,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,V,17,,,,PARENT W/ OFFSPRING?,7.2,198,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,200,,,,,12.3,153,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,S,228,,,Y,,ND,188,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,S,45,,,,,13.6,158,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,C,20,,,,ON SHORE,ND,133,Dark-eyed Junco
+DEJU,2014,East Lake,EASTLA2,fish,2014-06-22,1,1,813,na,na,0,V,52,,,,,16.5,173,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,80,,,,TOWARD POINT 2,33.1,187,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,81,,,,,20.1,159,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-07-18,4,3,810,9,1,4(5),V,59,,,,,9.2,199,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,S,88,,,,,23.4,187,Dark-eyed Junco
+DEJU,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,40,,,,"pair with above, along shoreline",26.9,187,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,V,6,,,,,0.4,153,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),S,140,,,,,ND,174,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),S,16,,,Y,,ND,174,Dark-eyed Junco
+DEJU,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,V,54,,,Y,FEMALE,13.6,158,Dark-eyed Junco
+DEJU,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,s,72,,,,,4.1,188,Dark-eyed Junco
+DEJU,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,27,,,,,0.4,153,Dark-eyed Junco
+DEJU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,V,38,,,,PAIR,4.4,198,Dark-eyed Junco
+DEJU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,200,3,,,,33.1,187,Dark-eyed Junco
+DUFL,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,C,75,,,Y,IN WOODS TO NORTH,7.2,199,Dusky Flycatcher
+DUFL,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,s,89,,,,,ND,159,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,40,,,,IN WOODS,12.3,153,Dusky Flycatcher
+DUFL,2014,East Lake,EASTLA1,fishless,2014-06-21,1,1,714,8,0,1,C,65,,,,,8,172,Dusky Flycatcher
+DUFL,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,C,83,,,,,13.5,176,Dusky Flycatcher
+DUFL,2014,Center,CENTER2,fish,2014-06-25,1,2,812,,na,0,S,61,Y,,,,9.8,176,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,S,38,,,,,0.1,153,Dusky Flycatcher
+DUFL,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,78,,,Y,,33.1,187,Dusky Flycatcher
+DUFL,2016,Center,CENTER2,fish,2016-06-07,1,1,703,,0,2,v,NA,,,,flew past and landed,ND,159,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,32,,,,ACROSS LAKE,12.3,153,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,41,,,,DO HIC,17.1,174,Dusky Flycatcher
+DUFL,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,40,,,,,13,189,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),S,51,,,,,ND,174,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,C,39,,,,,9.2,153,Dusky Flycatcher
+DUFL,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,s,150,,,,,23.7,159,Dusky Flycatcher
+DUFL,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,S,NA,,,,,18.8,176,Dusky Flycatcher
+DUFL,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,21,,,,,ND,159,Dusky Flycatcher
+DUFL,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,V,71,,,,FC-- LANDED ON NORTH SHORE LOOKING FOR FLEDGLING?,25.4,203,Dusky Flycatcher
+DUFL,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,S,48,,,,,8.7,176,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,C,49,,,,,9.2,153,Dusky Flycatcher
+DUFL,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,S,70,,,,,47.5,171,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,S,26,,,,,5.2,174,Dusky Flycatcher
+DUFL,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,30,,,,,ND,133,Dusky Flycatcher
+DUFL,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,50,,,,,12.2,189,Dusky Flycatcher
+DUFL,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,s,80,,,,,6.2,188,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),C,32,,,,,2.2,133,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,36,,,Y,,13.8,174,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),C,108,1,,,,3.7,133,Dusky Flycatcher
+DUFL,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,75,,,,TOWARD SM,6.7,199,Dusky Flycatcher
+FOSP,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,83,,,,,ND,159,Fox Sparrow
+FOSP,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,s,190,,,,,23.7,159,Fox Sparrow
+FOSP,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,v,1,,,,foraging behind me,16.6,187,Fox Sparrow
+FOSP,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,21,,,,,16.6,187,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,220,,,Y,,4.9,174,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,S,51,,,Y,BY OUTLET,4.4,198,Fox Sparrow
+FOSP,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,210,,,,,20.1,159,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,70,,,,,12.3,153,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,S,38,2,,,,5.2,174,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,95,,,Y,,9.2,153,Fox Sparrow
+FOSP,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,160,,,,,4.9,174,Fox Sparrow
+GCRF,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,V,160,,Y,,,18.6,176,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,V,17,Y,,,,11.3,189,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,35,1,,,"MALE DISPLAYING WITH WINGS, POSSIBLE COPULATION",ND,185,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,V,38,,,,,10,189,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,V,10,Y,,,,11.3,189,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,C,5,,,,,18.6,176,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,C,250,,,,,ND,158,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,4,838,3,1,2.5,C,300,,,,ACROSS LAKE,28.4,159,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,63,,,,"LATER, FORAGING NEAR LAKE",5.2,174,Gray-crowned Rosy Finch
+GCRF,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,V,NA,,,,,8,172,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,V,7,,,Y,,13.3,185,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,C,250,Y,,,,10.5,189,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,V,15,,,,,8.7,176,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,3,803,4,0,3.5,V,12,2,,,"MALE CHASED FEMALE-- ATTEMPTED COPULATION, DID NOT SEE FEMALE SOLICIT. ",8.9,160,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,NA,,,,,7.2,199,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,C,8,,,,,47.5,171,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,4,819,4,0,4,C,45,3,,,,9.8,160,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,V,NA,3,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,2,744,3,1,2(4),C,500,,,,,8.2,160,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,C,150,,,,,13.5,176,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,4,900,,na,0,C,10,,,,,15.6,176,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,1,651,7,1,2(4),V,NA,,,Y,,9.2,171,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,63,,,,"LATER, FORAGING NEAR LAKE",5.2,174,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,70,y,,,,6.2,188,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,C,25,,,,,10,189,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,V,179,,,,FORAGING BY POINT 4,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,V,5,,,,"ON SHORE, CALLING",9.2,153,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,V,10,,,,,10,189,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,V,35,,,,,21.2,171,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,V,35,,,,,21.2,171,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,1,651,7,1,2(4),C,NA,,,,,9.2,171,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,V,20,Y,,,,11.7,189,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,V,230,,,,,18.8,176,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,5,901,2,1,2.5,V,12,,,,PAIR-- FLEW TO TALUS TOGETHER,29.5,159,Gray-crowned Rosy Finch
+GCRF,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,C,200,,,,,14.3,202,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),V,11,,,,WATER'S EDGE,7.4,160,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),V,11,,,,WATER'S EDGE,7.4,160,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,V,10,Y,,,,11.3,189,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,4,838,3,1,2.5,C,300,,,,ACROSS LAKE,28.4,159,Gray-crowned Rosy Finch
+GCRF,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,C,9,,,Y,FLEW OVER MIC,14.3,202,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,19,3,,,FORAGING ON LAKE,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,NA,,,,,7.2,199,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,V,31,,,,,13.6,158,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,C,165,,,Y,,25.4,203,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,4,900,,na,0,C,10,,,,,15.6,176,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,S,110,,,,,21.7,158,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,V,8,,,,FORAGE UNDER TREE,33.1,187,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,V,20,Y,,,,11.7,189,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,3,803,4,0,3.5,V,12,2,,,"MALE CHASED FEMALE-- ATTEMPTED COPULATION, DID NOT SEE FEMALE SOLICIT. ",8.9,160,Gray-crowned Rosy Finch
+GCRF,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,V,NA,,,,,8,172,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,20,2,,Y,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,11,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,61,,,,ADULT-- FORAGING ON SHORELINE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,V,4,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,V,8,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,39,,,,GROUP ACROSS LAKE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,V,8,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,v,NA,,,,,13,189,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,39,,,,"GROUP OF 3, THEN 2 JOINED",ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,V,63,,,,"LATER, FORAGING NEAR LAKE",5.2,174,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,52,,,,ON WATER,5.2,174,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,39,,,,"GROUP OF 3, THEN 2 JOINED",ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,39,,,Y,"GROUP OF 3, THEN 2 JOINED",ND,185,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,70,y,,,,6.2,188,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,V,38,,,,,10,189,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,V,30,,,,,12.7,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,V,179,,,,FORAGING BY POINT 4,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,C,9,,,,,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,V,46,,,,GROUP,24.9,171,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,V,46,,,,GROUP,24.9,171,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,V,46,,,,GROUP,24.9,171,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,V,60,,,Y,,13.6,158,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,V,230,,,,,18.8,176,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,5,901,2,1,2.5,V,12,,,,PAIR-- FLEW TO TALUS TOGETHER,29.5,159,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,V,10,Y,,,,11.3,189,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,11,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,V,15,,,,,8.7,176,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,NA,,,,,7.2,199,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,C,150,,,,,13.5,176,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,V,70,,,,,21.7,158,Gray-crowned Rosy Finch
+GCRF,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,V,14,,,,FAR SHORE,3.1,173,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,97,3,,,,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,2,744,3,1,2(4),C,500,,,,,8.2,160,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,37,2,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,V,NA,,,,,33.1,187,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,15,2,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,2,744,3,1,2(4),V,14,,,Y,FORAGING FOR INSECTS ON ICE!,8.2,160,Gray-crowned Rosy Finch
+GCRF,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,V,NA,,,,,8,172,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,4,945,15,0,2,C,40,3,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,3,803,4,0,3.5,V,37,2,Y,Y,,8.9,160,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,c,115,y,,,,4.6,188,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,V,35,,,,,21.2,171,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,4,819,4,0,4,V,49,3,,,,9.8,160,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,95,,,,ACROSS INLET,6.7,199,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,39,,,,GROUP ACROSS LAKE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,4,819,4,0,4,V,18,,,,FORAGE ON GRASS,9.8,160,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,39,,,,"GROUP OF 3, THEN 2 JOINED",ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,V,39,,,,"GROUP OF 3, THEN 2 JOINED",ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,V,NA,3,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,37,2,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,4,748,1,0,0,V,94,,,,,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,V,51,,,,,13.3,185,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,11,1,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,C,180,,,,GCRF BEGGING CALL ACROSS LAKE,25.4,203,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,19,3,,,FORAGING ON LAKE,ND,188,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,c,100,,,y,,16.6,187,Gray-crowned Rosy Finch
+GCRF,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,V,15,,,,,8.7,176,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,V,46,,,,GROUP,24.9,171,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,C,26,3,,,"BUCCAL POUCH FULL, CARRIED NORTH OF LAKE",ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,C,150,,,Y,,13.6,158,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,C,26,3,,,"BUCCAL POUCH FULL, CARRIED NORTH OF LAKE",ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,2,828,7,0,0,V,220,3,,Y,,ND,188,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,v,7,,,,"foraging on shoreline, flew in direction of CENTER 1 after a single lap around CENTER4",4.1,188,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,v,7,,,,"foraging on shoreline, flew in direction of CENTER 1 after a single lap around CENTER3",4.1,188,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,39,,Y,,GROUP ACROSS LAKE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,c,115,y,,,,4.6,188,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,NA,,,,,7.2,199,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,,,13.8,174,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,V,20,Y,,,,11.7,189,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,V,NA,,,,,13.8,174,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),C,6,,,,"JOINED BRIEFLY BY GCRF ABOVE, THEN FLEW TO UPPER POND",7.4,160,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,v,7,,,,"foraging on shoreline, flew in direction of CENTER 1 after a single lap around CENTER2",4.1,188,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,70,y,,,,6.2,188,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,V,8,,,,1 FLEDGLING-- FORAGE UNDER TREE,33.1,187,Gray-crowned Rosy Finch
+GCRF,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,V,20,Y,,,,11.7,189,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,C,61,,,,BEGGING FLEDGLING,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),V,11,1,,,FORAGING IN GRASS,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,19,3,,,FORAGING ON LAKE,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,3,805,1,1,0,V,179,,,,FORAGING BY POINT 4,ND,188,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,V,30,,,,,12.7,185,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,NA,,,Y,,6.7,199,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,39,,,,GROUP ACROSS LAKE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,39,,,,GROUP ACROSS LAKE,32.7,203,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,37,2,,,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,4,815,10,1,1.5,C,45,,,,,13.8,174,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),V,6,,,,WATER'S EDGE,7.4,160,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,c,115,y,,,,4.6,188,Gray-crowned Rosy Finch
+GCRF,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,89,,,,flew past outlet from talus on north shore,26.9,187,Gray-crowned Rosy Finch
+GCRF,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,V,6,,,Y,,3.1,173,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,C,260,,,Y,,12.7,185,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,C,NA,,,,GROUP- DC?,17.1,174,Gray-crowned Rosy Finch
+GCRF,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,V,20,2,,Y,,ND,185,Gray-crowned Rosy Finch
+GCRF,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,NA,,,,FROM WEST SIDE,7.2,199,Gray-crowned Rosy Finch
+GCRF,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),C,6,,,,"JOINED BRIEFLY BY GCRF ABOVE, THEN FLEW TO UPPER POND",7.4,160,Gray-crowned Rosy Finch
+HETH,2014,East Lake,EASTLA1,fishless,2014-06-21,1,1,714,8,0,1,S,300,,,,,8,172,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,500,,,,UPPER PART OF BASIN,33.1,187,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,V,14,,,Y,,9.2,153,Hermit Thrush
+HETH,2014,East Lake,EASTLA2,fish,2014-06-22,1,2,851,na,na,0,S,300,,,,,15.1,173,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,500,,,,,33.1,187,Hermit Thrush
+HETH,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,s,300,,,y,,23.7,159,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,500,,,,,23.7,159,Hermit Thrush
+HETH,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),S,145,1,,,"DC WITH BIRD FROM CENTER1, CS WITH HETH S89",2.2,133,Hermit Thrush
+HETH,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,125,,,,,13,189,Hermit Thrush
+HETH,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),S,89,,,,,2.2,133,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,190,,,,BASE OF UNIV PASS,ND,133,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,2,726,3,1,1,S,55,,,,ON STEEP VEG SLOPE OPPOSITE OF POINT,17.4,159,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,5,712,8,1,0,S,500,,,,UPSLOPE,12,187,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,S,69,2,,,,5.2,174,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,S,61,1,,,,ND,133,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,4,735,8,0,0,S,500,5,,Y,,23.4,187,Hermit Thrush
+HETH,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,S,160,,,,,0.1,153,Hermit Thrush
+HETH,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,S,500,,,,,17.1,174,Hermit Thrush
+HETH,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,79,,,,called first,ND,159,Hermit Thrush
+HETH,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,s,90,,,,heard call first,ND,159,Hermit Thrush
+HETH,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,150,,,,,12.2,189,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,500,,,,UPPER PART OF BASIN,33.1,187,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,69,,,,,4.9,174,Hermit Thrush
+HETH,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,3,816,7,1,2.5,S,500,1,,,,27.2,159,Hermit Thrush
+HETH,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,110,,,,,4.9,174,Hermit Thrush
+HETH,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,s,200,,,y,,ND,159,Hermit Thrush
+HETH,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,S,210,,,,,17.1,174,Hermit Thrush
+HETH,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,s,350,,,,,12,189,Hermit Thrush
+MOBL,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,V,78,,,,JUV OR FEMALE,14.3,202,Mountain Bluebird
+MOBL,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,V,41,,,,DC FROM UPKERN1,26.2,202,Mountain Bluebird
+MOBL,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,S,41,,,,DC FROM UPKERN1,26.2,202,Mountain Bluebird
+MOBL,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,S,95,,,,,47.5,171,Mountain Bluebird
+MOBL,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,S,78,,,,ADULT,14.3,202,Mountain Bluebird
+MOCH,2014,East Lake,EASTLA1,fishless,2014-06-21,1,1,714,8,0,1,C/S,83,,,,,8,172,Mountain Chickadee
+MOCH,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,40,,,,,0.4,153,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,150,,,,,4.9,174,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,145,,,,,ND,133,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,80,,,,,ND,133,Mountain Chickadee
+MOCH,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,C,105,,,Y,,33.1,187,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,C,180,,,,,9.2,153,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,90,,,,THEN MOVED CLOSER,12.3,153,Mountain Chickadee
+MOCH,2015,Center,CENTER2,fish,2015-07-18,4,3,810,9,1,4(5),C,59,,,Y,,9.2,199,Mountain Chickadee
+MOCH,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),C,55,,,,,2.2,133,Mountain Chickadee
+MOCH,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,c,105,,,,,26.9,187,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,63,,,,,9.2,153,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,90,,,,,4.9,174,Mountain Chickadee
+MOCH,2015,Center,CENTER2,fish,2015-07-18,4,3,810,9,1,4(5),C,88,,,Y,,9.2,199,Mountain Chickadee
+MOCH,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,C,57,,,,,ND,133,Mountain Chickadee
+NOFL,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,C,172,,,,ACROSS LAKE-- CLEAR! CALL,25.4,203,Northern Flicker
+NOFL,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,C,500,,,,,4.9,174,Northern Flicker
+NOFL,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,C,205,,,,WIK WIK CALL,25.4,203,Northern Flicker
+RECR,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,C,NA,,,,,ND,133,Red Crossbill
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,2,654,15,na,0,s,150,y,,,,12.8,189,Rock Wren
+ROWR,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,S,89,,,,,8,172,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,2,726,3,1,1,S,65,,,,,17.4,159,Rock Wren
+ROWR,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,S,170,,,,,8,172,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,S,37,,,,PAIR,18.3,158,Rock Wren
+ROWR,2014,East Lake,EASTLA1,fishless,2014-06-21,1,2,736,8,0,1,C,90,,,,,8,172,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,s,100,,,,,12,189,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,500,,,,ACROSS LAKE,33.1,187,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,1,651,7,1,2(4),S,170,,,,SAME FROM N/S SHORES?,9.2,171,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,3,712,15,na,0,s,400,,,,,12.5,189,Rock Wren
+ROWR,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,S,110,,,,,18.8,176,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),C,110,,,,,ND,174,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,43,2,,,,23.7,159,Rock Wren
+ROWR,2014,Center,CENTER1,fishless,2014-06-25,1,1,939,,na,,S,210,,,,,18.6,176,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,1,655,10,0,3,S,75,,,,,13.3,185,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,4,900,,na,0,S,51,,,,,15.6,176,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,S,230,1,,,,18.3,158,Rock Wren
+ROWR,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,S,150,,,,ACROSS LAKE,3.1,173,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,2,713,2,1,3.5,S,170,,,,,4.4,158,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,3,803,4,0,3.5,S,49,2,,Y,,8.9,160,Rock Wren
+ROWR,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,S,200,,,Y,,3.1,173,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,V,53,,,Y,PAIR,4.4,198,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,45,,,,,13,189,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,V,53,,,Y,PAIR,4.4,198,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),S,160,,,,,6.7,199,Rock Wren
+ROWR,2014,Center,CENTER1,fishless,2014-06-25,1,2,959,,na,,S,42,,,,,18.8,176,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,S,165,1,,,,ND,185,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,2,654,15,na,0,s,100,,,,,12.8,189,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,2,812,,na,0,S,90,,,,,9.8,176,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,S,300,Y,,,,10.5,189,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,S,300,,,,,10,189,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,C,80,,,,,24.9,171,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,C,33,2,,,,4.1,153,Rock Wren
+ROWR,2015,Upper Kern,UPKERN1,fishless,2015-07-21,2,1,751,,0,3,S,131,,,,,14.3,202,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,105,1,,,,32.2,187,Rock Wren
+ROWR,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,88,,,y,,16.6,187,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,S,210,,,,,13.6,158,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,3,847,,na,0,S,200,Y,,,,13.5,176,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,112,,,Y,PAIR,ND,188,Rock Wren
+ROWR,2014,East Lake,EASTLA1,fishless,2014-06-21,1,1,714,8,0,1,S,180,,,,,8,172,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,300,,,Y,ACROSS LAKE,12.7,185,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,2,812,,na,0,S,200,Y,,,,9.8,176,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,S,45,,,,,12.3,153,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,V,32,,,,FLEW TOWARD OUTLET,4.4,198,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,51,,,,,ND,133,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,C,50,2,,,,ND,158,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,S,285,,,,,ND,185,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,350,y,,,,12.2,189,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,V,37,,,,PAIR,18.3,158,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,500,,,,,0.4,153,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,S,230,2,,,,13.6,158,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,1,722,2,1,0(4),S,130,,,,,7.4,160,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,4,900,,na,0,S,90,,,,,15.6,176,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,S,40,,,,,21.7,158,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,S,14,,,,,ND,185,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),S,13,,,,FC OVER N RIDGE-- INSECTS,ND,188,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,S,120,,,,,0.1,153,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,S,71,,,,,10,189,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,S,270,,,,ACROSS LAKE,0.9,153,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,96,,,Y,CS W/ FIRST ROWR,32.2,187,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-07-18,4,4,827,10,1,4,S,41,,,,UP ON TALUS BELOW CENTER PEAK,10.5,199,Rock Wren
+ROWR,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,S,270,,,,,8.7,176,Rock Wren
+ROWR,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,S,150,,,,,3.4,173,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,2,726,3,1,1,S,130,,,,,17.4,159,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,S,130,,,,,11.3,189,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,3,742,,,,S,270,2,,,,13.6,158,Rock Wren
+ROWR,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,S,81,,,,NEAR OUTLET,ND,185,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,112,,,Y,PAIR,ND,188,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,3,749,,na,,S,300,Y,,,,11.3,189,Rock Wren
+ROWR,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,C,88,,,Y,,26.2,202,Rock Wren
+ROWR,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,90,,,,,9.2,153,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,1,816,4,1,0.5,S,270,3,,,,ND,158,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-23,3,4,815,10,1,1.5,C,25,,,,,13.8,174,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,51,,,,CS WITH 1ST ROWR,23.7,159,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,S,300,Y,,,,11.7,189,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,3,816,7,1,2.5,S,190,1,,,,27.2,159,Rock Wren
+ROWR,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,2,713,2,1,3.5,S,65,,,,,4.4,158,Rock Wren
+ROWR,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,S,80,,,,,3.4,173,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT2,fish,2015-07-22,2,1,824,7,1,0,S,137,,,Y,SANG AFTER COUNTS,25.4,203,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,S,85,,,,SOUNDED LIKE VATH AT TIMES,47.5,171,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,4,819,4,0,4,S,500,3,,,,9.8,160,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,S,105,,,,ACROSS LAKE,0.9,153,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,s,385,y,,,,12,189,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT1,fishless,2015-06-09,1,2,744,3,1,2(4),S,220,,,Y,TO THE SOUTH,8.2,160,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,C,72,,,Y,,32.7,203,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,S,500,,,,OPPOSITE SHORE,23.4,187,Rock Wren
+ROWR,2015,Upper Kern,UPKERN1,fishless,2015-06-22,1,1,703,4,0,0,S,90,,,,,3.1,173,Rock Wren
+ROWR,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,85,,,,,12.2,189,Rock Wren
+ROWR,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,C,165,4,,,,13.8,174,Rock Wren
+ROWR,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,C,150,,,,ACROSS LAKE,47.5,171,Rock Wren
+ROWR,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,4,838,3,1,2.5,S,39,,,,UPSLOPE,28.4,159,Rock Wren
+RUHU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,V,NA,,,Y,,32.2,187,Rufous Hummingbird
+RUHU,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,V,NA,,,Y,,32.2,187,Rufous Hummingbird
+SPSA,2015,Center,CENTER2,fish,2015-06-23,3,4,815,10,1,1.5,V,260,,,,OTHER SIDE OF LAKE BEYOND SM,13.8,174,Spotted Sandpiper
+SPSA,2015,Center,CENTER2,fish,2015-06-02,2,4,753,,1,0.5,V,20,2,,,,4.1,153,Spotted Sandpiper
+SPSA,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,100,,,,ON SHORE,13.8,174,Spotted Sandpiper
+SPSA,2014,Center,CENTER2,fish,2014-06-25,1,1,802,,na,0,S,39,,,,,8.7,176,Spotted Sandpiper
+SPSA,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),C,70,3,,,,ND,174,Spotted Sandpiper
+SPSA,2015,Center,CENTER2,fish,2015-06-23,3,1,904,12,1,1,S,46,3,,,,17.1,174,Spotted Sandpiper
+SPSA,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,C,96,,,,ACROSS LAKE,0.9,153,Spotted Sandpiper
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,V,55,,,,,21.2,171,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,3,712,15,na,0,v,8,,,,,12.5,189,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,C,13,,,,PAIR,21.2,171,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,5,805,15,na,0,s,300,,,,,12.2,189,White-crowned Sparrow
+WCSP,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,C,30,,,,FORAGING,3.4,173,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,5,712,8,1,0,C,17,,,,PAIR WITH WCSP BELOW-- NEST OR FLEDGLINGS NEARBY?,12,187,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,C,53,,,,IN WILLOWS BY INLET,23.4,187,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,5,1003,15,0,2,S,400,,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,4,735,8,0,0,S,190,5,,,,23.4,187,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,C,53,,,,IN WILLOWS BY INLET,23.4,187,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,336,,,,,ND,188,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,S,105,1,,,,ND,133,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,3,808,12,1,0.5,V,70,,,,,24.9,171,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),S,39,1,,,,ND,185,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,s,200,,,,,4.6,188,White-crowned Sparrow
+WCSP,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,200,,,,,20.1,159,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,150,,,Y,,23.7,159,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,1,839,11,1,1.5,S,130,3,,,,33.1,187,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-06-02,2,2,834,2,1,2,S,22,,,,,9.2,153,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,S,40,,,,,ND,133,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,4,728,15,na,0,s,75,,,,,12,189,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,C,14,,,,FEMALE SOLICIT,0.9,153,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-06-07,1,1,703,,0,2,v,48,,,y,forage on wetlands near lake,ND,159,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-06-07,1,1,703,,0,2,v,45,,,y,contact call with other wcsp,ND,159,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,V,4,,,,,0.1,153,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,2,654,15,na,0,s,200,y,,,,12.8,189,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,C,25,,,,,18.3,158,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,3,712,15,na,0,v,8,,,,,12.5,189,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,V,13,,,,,7.2,198,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),S,79,,,,,2.2,133,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,65,,,,,12.7,185,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,5,712,8,1,0,V,24,,,,,12,187,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),S,98,,,,,ND,174,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,s,300,,,,,4.1,188,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,C,51,,,,,10,189,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,270,,,,,12.7,185,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,5,901,2,1,2.5,V,16,,,,FLEW TO WILLOW-- NEST?,29.5,159,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,C,9,,,,,0.9,153,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,C,70,Y,,,,10.5,189,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,30,,,Y,,32.2,187,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,14,,,,FORAGING IN WET MEADOW/INLET STREAM,7.2,199,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT1,fishless,2015-07-07,2,1,855,7,1,2(3),V,78,,,,FOOD CARRY TO TREE ON EAST RIDGE-- INSECTS,ND,188,White-crowned Sparrow
+WCSP,2016,Center,CENTER1,fishless,2016-07-05,2,2,820,8,1,0,s,200,,,,upslope,26.9,187,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,2,913,13,0,1(2),S,60,1,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,V,55,,,,,21.2,171,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-05-13,1,2,846,4,1,1(5),S,35,1,,,,3.7,133,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,S,51,,,,N SIDE,47.5,171,White-crowned Sparrow
+WCSP,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,V,21,,,,FLEDGLING FED BY WCSP ABOVE,26.2,202,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-23,3,4,815,10,1,1.5,S,155,,,,NEAR OUTLET,13.8,174,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,1,913,3,1,1,S,38,,,,,21.7,158,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,4,803,,na,,C,13,,,,,11.7,189,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,C,22,,,,,0.4,153,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,1,651,7,1,2(4),C,100,,,,,9.2,171,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,S,55,2,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,C,26,,,,CALLING WITH WCSP ABOVE,4.4,198,White-crowned Sparrow
+WCSP,2015,Upper Kern,UPKERN2,fish,2015-06-22,1,1,637,3,0,0,C,80,,,,CALLING BACK TO FIRST WCSP,3.4,173,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET1,fishless,2015-06-07,1,2,943,5,1,1,S,250,1,,,,18.3,158,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET1,fishless,2015-07-04,2,2,732,8,0,1,S,165,,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,S,190,,,,,12.7,185,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,4,945,15,0,2,S,250,2,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-05-13,1,2,739,-5,0,0,S,69,,,,,ND,133,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,v,24,,,,pair foraging quietly,4.6,188,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,V,13,,,,,0.9,153,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,v,24,,,,pair foraging quietly,4.6,188,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,2,810,,1,0,s,66,,,,to the north,8.9,188,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,2,734,,na,,C,47,,,,,10.5,189,White-crowned Sparrow
+WCSP,2016,Center,CENTER1,fishless,2016-07-05,2,1,759,9,1,0,s,18,,,,then flew to forage on opposite shore ~ 50m from outlet,16.6,187,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-07-17,4,2,802,5,1,0,S,86,,,,,7.2,198,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,2,938,,,1,V,9,,,,FLUSHED FROM WILLOW,30.3,203,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-06-20,1,2,740,11,1,0.5,C,13,,,,PAIR,21.2,171,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,1,824,12,0,2,V,28,,,,,12.7,185,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT2,fish,2014-07-08,1,1,643,15,na,0,s,60,,,,,13,189,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,5,712,8,1,0,C,20,,,,PAIR WITH WCSP ABOVE-- BOTH CHIPPING,12,187,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,s,250,y,,y,,6.2,188,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-06-07,1,3,621,,0,1,c,10,,,,,ND,159,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,2,810,,1,0,v,10,,,,pair w nest chipping,8.9,188,White-crowned Sparrow
+WCSP,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,4,735,8,0,0,S,68,,,,,23.4,187,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,2,810,,1,0,v,10,,,,pair w nest chipping,8.9,188,White-crowned Sparrow
+WCSP,2015,Barrett Lakes,BARRET2,fish,2015-07-04,2,3,930,13,0,1,S,150,2,,,,ND,185,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,75,,,,,ND,133,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,38,4,,,,13.8,174,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,38,,,,FORAGING IN WET MEADOW/INLET STREAM,7.2,199,White-crowned Sparrow
+WCSP,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,C,30,,,,FORAGING ON GRASSY SHORE,26.2,202,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,2,938,,,1,V,9,,,,FLUSHED FROM WILLOW,30.3,203,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,c,9,,,,,6.2,188,White-crowned Sparrow
+WCSP,2015,Upper Kern,UPKERN2,fish,2015-07-21,2,1,908,,1,4,C,21,,,,INCESSANT CALLING FROM WILLOW BY INLET STREAM,26.2,202,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,2,938,,,1,V,9,,,,FLUSHED FROM WILLOW,30.3,203,White-crowned Sparrow
+WCSP,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,S,100,,,,S SIDE,47.5,171,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-23,3,2,921,12,1,1(4),S,120,,,Y,,ND,174,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,C,32,,,,,0.4,153,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,9,,,,ALARM CALLING FOR MINUTES,6.7,199,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-07-18,4,2,723,4,0,3(4),C,31,,,,,6.7,199,White-crowned Sparrow
+WCSP,2015,Center,CENTER2,fish,2015-06-23,3,3,832,11,1,0,S,180,,,,,13.8,174,White-crowned Sparrow
+WCSP,2014,East Lake,EASTLA2,fish,2014-06-22,1,2,851,na,na,0,S,300,,,,,15.1,173,White-crowned Sparrow
+WCSP,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,C,29,,,,CALLING WITH WCSP BELOW,4.4,198,White-crowned Sparrow
+WCSP,2016,Center,CENTER2,fish,2016-07-06,2,4,711,0,0,0,s,81,,,,,4.1,188,White-crowned Sparrow
+WCSP,2014,Amphitheater,AMPHIT1,fishless,2014-07-08,1,1,702,,na,,C,51,,,,,10,189,White-crowned Sparrow
+WIWA,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,3,819,8,1,0,C,59,,,,IN WILLOWS BY INLET-- NF LATER,23.4,187,Wilson's Warbler
+WIWA,2014,East Lake,EASTLA2,fish,2014-06-22,1,2,851,na,na,0,V,5,,,,,15.1,173,Wilson's Warbler
+WIWA,2016,Center,CENTER2,fish,2016-07-06,2,1,755,4,1,1,s,23,,,,and chipping,6.2,188,Wilson's Warbler
+WIWA,2014,East Lake,EASTLA2,fish,2014-06-22,1,2,851,na,na,0,V,5,,,,,15.1,173,Wilson's Warbler
+WIWA,2015,Center,CENTER2,fish,2015-07-18,4,1,743,9,0,4,V,27,,,Y,FLEW QUICKLY-- CONFIRMED WIWA MALE BY SIGHT POST-COUNT,7.2,199,Wilson's Warbler
+WIWA,2014,East Lake,EASTLA2,fish,2014-06-22,1,1,813,na,na,0,S,35,,,,,16.5,173,Wilson's Warbler
+WIWA,2016,Center,CENTER2,fish,2016-06-07,1,2,641,,0,0,s,50,,,,,ND,159,Wilson's Warbler
+WIWA,2015,Amphitheater,AMPHIT2,fish,2015-07-06,2,2,900,11,1,2,S,69,,,Y,,32.2,187,Wilson's Warbler
+XXHU,2015,Center,CENTER1,fishless,2015-07-17,4,1,727,-2,0,0,C,40,,,,,4.4,198,Unidentified Hummingbird
+XXHU,2016,Center,CENTER2,fish,2016-07-06,2,3,734,0,1,1,v,6,,,y,female,4.6,188,Unidentified Hummingbird
+XXSP,2015,Center,CENTER1,fishless,2015-06-23,3,1,704,4,0,0,C,2,,,,WCSP OR DEJU,5.2,174,Unidentified Sparrow
+XXXX,2016,Center,CENTER1,fishless,2016-06-07,1,1,903,,1,0,s,200,,,,,23.7,159,Unidentified Bird
+XXXX,2015,Barrett Lakes,BARRETX,fishless,2015-06-07,1,2,713,2,1,3.5,V,NA,,,Y,GCRF?,4.4,158,Unidentified Bird
+XXXX,2015,Wright Lakes,WRIGHT2,fish,2015-06-20,1,1,852,13,1,0,V,33,,,,NM CARRY-- WARBLER?,47.5,171,Unidentified Bird
+XXXX,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,C,NA,,,,FINCH?,0.1,153,Unidentified Bird
+XXXX,2015,Center,CENTER2,fish,2015-05-13,1,1,830,3,1,1(3),C,NA,,,,"GROUP, SINGLE-PITCHED CHATTER ALARM. LIKELY AMPI.",2.2,133,Unidentified Bird
+XXXX,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,2,938,,,1,V,51,,,,IN WILLOW AT WATERFALL,30.3,203,Unidentified Bird
+XXXX,2015,Wright Lakes,WRIGHT1,fishless,2015-07-22,2,1,915,12,1,0,V,101,,,,HIDDEN IN OUTLET WILLOWS,32.7,203,Unidentified Bird
+YRWA,2016,Center,CENTER1,fishless,2016-06-07,1,2,844,,1,0,s,200,,,,,20.1,159,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER2,fish,2015-07-18,4,3,810,9,1,4(5),V,75,,,,,9.2,199,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER2,fish,2015-06-02,2,2,727,,0,0.5,S,75,1,,,,0.9,153,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER2,fish,2015-06-02,2,3,648,,0,0.5,S,67,,,,,0.1,153,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER2,fish,2015-06-02,2,1,709,,0,0.5,S,69,3,,,,0.4,153,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER1,fishless,2015-06-02,2,1,852,2,1,2,V,4,,,,MALE MOVED CLOSER TO SHORE,12.3,153,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER1,fishless,2015-06-23,3,2,643,2,0,0,S,65,,,Y,,4.9,174,Yellow-Rumped Warbler
+YRWA,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,2,726,3,1,1,S,38,,,,ON STEEP VEG SLOPE OPPOSITE OF POINT,17.4,159,Yellow-Rumped Warbler
+YRWA,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,3,816,7,1,2.5,S,180,1,,,,27.2,159,Yellow-Rumped Warbler
+YRWA,2015,Amphitheater,AMPHIT2,fish,2015-06-08,1,1,748,3,1,2,S,45,2,,,,23.7,159,Yellow-Rumped Warbler
+YRWA,2015,Center,CENTER1,fishless,2015-05-13,1,1,710,-7,0,0,S,90,,,,,ND,133,Yellow-Rumped Warbler

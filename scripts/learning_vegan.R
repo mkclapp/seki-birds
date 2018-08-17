@@ -6,11 +6,15 @@ data(BCI)
 glimpse(BCI)
 head(BCI)
 
-rarefy(BCI)
+sp1 <- specaccum(BCI)
+sp2 <- specaccum(BCI, "random")
+sp2
+summary(sp2)
+plot(sp1, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+boxplot(sp2, col="yellow", add=TRUE, pch="+")
 
-Srar <- rarefy(BCI, min(rowSums(BCI)))
+# now try on my dataset
 
-class(BCI)
 
 
 
