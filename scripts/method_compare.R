@@ -83,5 +83,54 @@ sumbirds <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) %>%
 frankbirds <- merge(sumbirds, indices, by = "identifier") #OMG it worked 
 
 # plot against acoustic indices
-ggplot(frankbirds) + 
-  geom_point(aes(x = ACIout, y = shannon, color = lake))
+ggplot(frankbirds, aes(x = AR, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title="Acoustic Richness and Shannon diversity in 100 audio samples",
+       x = "Acoustic Richness (AR)", y = "Shannon Diversity")+
+  theme_minimal()
+
+ggplot(frankbirds, aes(x = ACIout, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title="Acoustic Complexity Index and Shannon diversity in 100 audio samples",
+       x = "Acoustic Complexity Index (ACI)", y = "Shannon Diversity")+
+  theme_minimal()
+
+ggplot(frankbirds, aes(x = Rough, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title="Acoustic Roughness and Shannon diversity in 100 audio samples",
+       x = "Acoustic Roughness", y = "Shannon Diversity") +
+  theme_minimal()
+
+library(lme4)
+
+colnames(frankbirds)
+colnames(frankbirds)[3] <- "fish"
+maudio <- lm(shannon ~ BKdB_bird + BKdB_low + ACIout + Hf + Ht + Rough + ADI_step + AR, data = frankbirds)
+plot(fitted(maudio), resid(maudio)) 
+qqnorm(resid(maudio))
+qqline(resid(maudio))
+summary(maudio)
+
+maudio2 <- lm(shannon ~ BKdB_bird + ACIout + Hf + ADI_step, data = frankbirds)
+plot(fitted(maudio2), resid(maudio2)) 
+qqnorm(resid(maudio2))
+qqline(resid(maudio2))
+summary(maudio2)
+
+
+ggplot(frankbirds, aes(x = ADI_step, y = shannon)) + 
+  geom_point() +
+  abline() +
+  labs(title="Acoustic Diversity Index and Shannon diversity in 100 audio samples",
+       x = "Acoustic Diversity (ADI_step)", y = "Shannon Diversity") +
+  theme_minimal()
+
+ggplot(frankbirds, aes(x = BKdB_bird, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title="Acoustic Diversity Index and background decibel level in 100 audio samples",
+       x = "Background decibel level in mid-range frequency band (1413-11220 Hz)", y = "Shannon Diversity") +
+  theme_minimal()

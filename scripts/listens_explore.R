@@ -13,12 +13,16 @@ library(vegan)
 library(plotrix)
 library(lme4)
 
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Supplemental Info -------------------------------------------------------
 
-lakeinfo <- read_csv("../data/lakeinfo.csv", col_names = TRUE)
-spec_names <- read_csv("../data/species_names.csv") 
-rec_summary <- read_csv("../data/100listens_recsummary.csv")
+lakeinfo <- read_csv("data/lakeinfo.csv", col_names = TRUE)
+lakeinfo <- lakeinfo %>% separate(lake, c("basin", "fish"), sep=-1, remove=FALSE) 
+lakeinfo$fish <- factor(ifelse(gsub('[^12]', '', lakeinfo$lake) == "2", "fish", "fishless"))
+
+spec_names <- read_csv("data/species_names.csv") 
+rec_summary <- read_csv("data/100listens_recsummary.csv")
 
 # Creating data frame (DONE) ----------------------------------------------
 
@@ -98,17 +102,17 @@ n_distinct(audio2$identifier) # 99 files-- that is correct
 rm(temps, temps2, audio)
 
 # birds filters data to birds with  100% positive ID only and calls > 40 dB, and no fledglings
-birds <- filter(audio2, !grepl("[*]",NOTES), 
+birds <- filter(audio2, !grepl("[*]",NOTES), !grepl("fledg", NOTES),
              # Max.Power..dB. > 40.0,
              ID == "AMPI" | ID =="GCRF" | ID == "WCSP" | ID == "DEJU" | ID == "ROWR" | ID == "MOCH" | ID == "CAFI" | ID == "CLNU" | ID == "SPSA" | ID == "AMRO" | ID == "MOBL" | ID =="FOSP" | ID =="HETH" | ID =="YRWA" | ID =="NOFL" | ID =="DUFL" | ID =="OCWA" | ID =="BRBL" | ID =="WAVI")
-                    # !grepl("fledg", NOTES))
+                     
 # 2018-08-13: I'm going to keep in quiet calls for now, because I lose 200+ observations without them and I am 100% sure of their identities despite them being quiet
 # 2018-08-15: Note that (see below) this filter removes an entire 10-min file, likely because it did not contain any identifiable bird calls. 
 n_distinct(birds$identifier)
 
-# add elevation data as a factor
-birds <- merge(birds, elev, by = "lake", all.y = FALSE)
-
+# add elevation and area data
+birds <- merge(birds, lakeinfo[,c(1,4,5)], by = "lake", all.y = FALSE)
+write_csv(birds, "data/listendata_allbirds.csv")
 
 # Mayfly data (optional) --------------------------------------------------
 
@@ -124,8 +128,8 @@ stickyeffort <- mayfly %>% select(lake, round, date_in, date_out, daysin)
 glimpse(stickyeffort)
 
 
-# Metadata on sampling effort (DONE)-----------------------------------------
-# sampling effort by lake
+# Metadata on sampling effort (DONE) -----------------------------------------
+# sampling effort by lake  
 rec_summary <- birds %>% group_by(lake) %>%
   summarise(days_sampled = n_distinct(date),
             n_samples = n_distinct(timestamp),
@@ -171,14 +175,14 @@ birdcalls <- birdcalls %>% select(-call_activity)
 # need to spread and gather to create entries for all speciesxlocation combos
 # IMPORTANT NOTE: spread and gather DO NOT WORK if there are grouping variables nested within the one you want to summarise by.
 birdcalls <- spread(data = birdcalls, key = ID, value = n_calls, fill = 0)
-birdcalls <- gather(data = birdcalls, key = ID, value = n_calls, ... = AMPI:NOFL)
+birdcalls <- gather(data = birdcalls, key = ID, value = n_calls, ... = AMPI:YRWA)
 
 ggplot(data = birdcalls) +
   geom_bar(stat="identity", position=position_dodge(), width = 0.6, aes(x=ID, y=n_calls, fill=fish)) +
   labs(title = "# calls during surveys")
 
 ggplot(data=birdcalls) +
-  geom_boxplot(aes(x=ID, y=activetime, fill=fish)) # doesn't look that good... gonna try means
+  geom_boxplot(aes(x=ID, y=n_calls, fill=fish)) # doesn't look that good... gonna try means
 
 ## breakdown by basin.. hurts eyes x_x but potentially useful code for the future
 # ggplot(data = birdcalls) +
@@ -231,7 +235,12 @@ foo3 <- foo3 %>%
 
 # now create columns for every combo of ID x location
 foo3 <- spread(data = foo3, key = ID, value = ncalls, fill = 0)
-foo3 <- gather(data = foo3, key = ID, value = ncalls, ... = AMPI:YRWA)    
+
+
+foo3 <- gather(data = foo3, key = ID, value = ncalls, ... = AMPI:WIWA)    
+
+
+#transform log(0)s to 0
 
 # foostats calculates the mean # of seconds per 10-min recording that each species calling, regardless of basin
 foostats3 <- foo3 %>% group_by(fish, ID) %>%
@@ -241,36 +250,20 @@ foostats3 <- foo3 %>% group_by(fish, ID) %>%
 
 foostats3 <- merge(foostats3, spec_names, by.x = "ID", by.y = "species")
 
-ggplot(foostats3, aes(x=spec_name, y=mean, fill=fish)) +
-  geom_bar(stat="identity", position = position_dodge(), width=0.6) +
-  geom_errorbar(position=position_dodge(),
-                aes(ymin = mean-sem, ymax = mean+sem, width = 0.6)) +
+f <- ggplot(foostats3) +
+  geom_bar(aes(x=spec_name, y=mean, fill=fish),
+           stat="identity", position = position_dodge(), width=0.7) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title="Call activity by species, July 2015", 
-       x="species", 
-       y="mean # of calls") +
-  scale_fill_discrete(name="lake type")
+  labs(title=NULL, 
+       x=NULL, 
+       y="mean number of calls (+/- s.e.) per 10-minute audio recording") +
+  guides(fill="none")
 
-# trying by lake now
-foostats2 <- foo %>% group_by(basin, fish, lake, ID) %>%
-  summarise(mean = mean(calltime),
-            sd=sd(calltime),
-            sem=std.error(calltime))
-
-foostats2 <- merge(foostats, spec_names, by.x = "ID", by.y = "species")
-
-ggplot(foostats2, aes(x=ID, y=mean, fill=fish)) +
-  geom_bar(stat="identity", position = position_dodge(), width=0.6) +
-  geom_errorbar(position=position_dodge(),
-                aes(ymin = mean-sem, ymax = mean+sem, width = 0.6)) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title="Call activity by species, July 2015", 
-       x="species", 
-       y="mean # of seconds bird is calling") +
-  scale_fill_discrete(name="lake type") +
-  facet_wrap(~basin, ncol=2)
+f +  geom_errorbar(data = foostats3,
+                   aes(x=spec_name, y=mean, ymin = mean-sem, ymax = mean+sem, 
+                       fill=fish, width = 0.7), position=position_dodge())
 
 # Species-specific graphs of active time ----------------------------------
 
@@ -430,7 +423,7 @@ ggplot(dat2) +
   geom_smooth(aes(x=timestamp, y=calltime, color = lake), method = "lm")
 # looks like calling activity didn't change much by time-- that's good
 
-#then use glmer to model sprich
+#then use glmer to model sprich 
 
 library(lme4)
 # elev needs to be scaled because the numbers are so big:
@@ -473,7 +466,7 @@ summary(m2)
 divmatrix <- birds %>% group_by(lake, ID, name) %>%
   summarise(time_calling = sum(Delta.Time..s.)) # seconds the species is audible within a 10-minute window 
 
-# make by lake
+# make by lake: n_obs is the number of surveys the species was detected
 divmatrix_lake <- divmatrix %>% group_by(lake, ID) %>%
   summarise(n_obs = n())
 
@@ -486,132 +479,14 @@ divmatrix_lake$n_surveys <- rec_summary$n_samples
 divmatrix_lake <- as.data.frame(divmatrix_lake)
 rownames(divmatrix_lake) <- divmatrix_lake[,1]
 divmatrix_lake <- divmatrix_lake %>% select(-lake)
-# now reorder for iNEXT analysis
-
-divmatrix_lake <- divmatrix_lake[c(18,2:17)]
+divmatrix_lake <- divmatrix_lake %>% select(-n_surveys)
 
 divmatrix <- as.data.frame(divmatrix) # assigns the name column as rownames
 rownames(divmatrix) <- divmatrix[,1]
 divmatrix <- divmatrix %>% select(-name) # removes the name column
+
+
+
 # make a presence/absence matrix 
 pa_matrix <- divmatrix
 pa_matrix[pa_matrix > 0] <- 1
-
-
-# rarefaction curves
-# TO DO: figure out how to create rarefaction curves as in Francis 2009
-
-specaccum(pa_matrix)
-
-# do by lake and follow iNEXT for incidence data (like their ants dataset)
-
-
-
-# Srar did not seem to work even with rounded numbers
-
-#TO DO: replace NAs and #s with 0s and 1s for a presence/absence matrix
-
-# number of species per date (# of samples per date vary!)
-# first calculate summary statistics:
-
-
-# Species Richness OLD CODE--------------------------------------------------------
-
-listen_rich <- birds %>% group_by(basin, fish, lake, timestamp) %>% 
-  summarize(nspecies=n_distinct(ID), total=n())
-
-sprich <- birds %>% group_by(lake, basin) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-sprich_ddd <- dd %>% group_by(lake, basin) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-# summary stats for avg. species richness by date-- needs rarefaction to be legit I think
-sprich_by_date <- birds %>% group_by(lake, basin, fish, date) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-# species richness for every sample
-sprich_by_sample <- birds %>% group_by(lake, basin, fish, timestamp, time) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-sprich_summary <- sprich_by_date %>% # this summary works
-  summarise(N = n_distinct(date),
-            mean_sprich = mean(sp_rich), 
-            median_sprich = median(sp_rich), 
-            sd_sprich = sd(sp_rich),
-            se = sd_sprich / sqrt(N))
-
-ggplot(data = e300) +
-  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
-  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2014-2016") +
-  facet_wrap(~basin) +
-  theme_light()
-
-ggplot(listen_rich) +
-  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
-  labs(x=NULL, y="species richness", title="Species Richness in 10-minute recordings, July 2015") +
-  facet_wrap(~basin) +
-  theme_light()
-
-# sprich_summary <- sprich_by_sample %>% # this summary NOT WORKING WTFFFFFFF
-#   summarise(N = n_distinct(lake),
-#             mean_sprich = mean(sp_rich), 
-#             median_sprich = median(sp_rich), 
-#             sd_sprich = sd(sp_rich),
-#             se = sd_sprich / sqrt(N))
-
-library(Rmisc)
-summary <- summarySE(sprich_by_sample, measurevar = "sp_rich", groupvars = c("basin", "lake", "fish"))
-sum2 <- summarySE(sprich_by_date, measurevar = "sp_rich", groupvars = c("basin", "lake", "fish"))
-# plot mean species richness 
-ggplot(summary, aes(x=basin, y=sp_rich, color = fish)) +
-  geom_point() +
-  geom_errorbar(aes(ymin = sp_rich - se, ymax = sp_rich + se), width = 0.2) + 
-  labs(x = "basin", y = "average species richness", title = "Species Richness by 10-min sample")
-ggplot(sum2, aes(x=basin, y=sp_rich, color = fish)) +
-  geom_point() +
-  geom_errorbar(aes(ymin = sp_rich - se, ymax = sp_rich + se), width = 0.2) + 
-  labs(x = "basin", y = "average species richness", title = "Daily Species Richness")
-
-#then use glmer to model sprich
-
-library(lme4)
-m1 <- glmer(sp_rich ~ fish  + (1|basin), family = poisson, data = sprich_by_sample)
-plot(fitted(m1), resid(m1))
-qqnorm(resid(m1))
-qqline(resid(m1))
-summary(m1)
-
-# could also do by time stamp to use all samples
-# and add time as a random effect in the model
-
-# list of all possible birds present in selection tables
-# ID == "AMPI" | "GCRF" | "WCSP" | "DEJU" | "ROWR" | "MOCH" | "CAFI" | "CLNU" | "SPSA" | "AMRO" | "MOBL" | ID =="FOSP" | ID =="HETH" | ID =="XXHU" | ID =="YRWA" | ID =="NOFL" | ID =="DUFL" | ID =="MALL" | ID =="OCWA" | ID =="BRBL" | ID =="WAVI")
-
-richness <- ddd %>% group_by(Lake) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-by_fish <- ddd %>% group_by(fish) %>%
-  summarise(sp_rich = n_distinct(ID))
-
-# MARINA 7/23/2018
-# library(Rmisc)
-# richness.sum <- ddply(dd, .(lake, fish, basin), summarize, richness = n_distinct(ID))
-# #richness.sum <- summarySE(richness.sum, measurevar = "richness", groupvars = "fish")
-# 
-# ggplot(sprich_by_date, aes(x=fish, y=spp_count)) +
-#   geom_point() +
-#   geom_errorbar(aes(ymin = spp_count - se, ymax = spp_count + se), width = 0.2)
-# 
-# ggplot(richness.sum, aes(x=fish, y=richness, group = 1)) +
-#   geom_point() +
-#   facet_wrap(~basin) +
-#   geom_line()
-# 
-# hist(richness.sum$richness)
-# library(lme4)
-# m1 <- glmer.nb(richness ~ fish + (1|basin), data = richness.sum)
-# plot(fitted(m1), resid(m1))
-# qqnorm(resid(m1))
-# qqline(resid(m1))
-# summary(m1)

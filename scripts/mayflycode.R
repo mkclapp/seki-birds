@@ -54,7 +54,7 @@ p <- ggplot(mayfly) + geom_linerange(aes(x=lake_fish,
                                          ymin=(date_in+hours(5)), 
                                          ymax=(date_out-hours(5)), 
                                          color=round), size=3)
-p + coord_flip() + scale_color_manual(values = wes_palette("GrandBudapest")) +
+p + coord_flip() +
   theme(plot.title = element_text(face="bold", size=16), 
         axis.title = element_blank(), 
         axis.text.x = element_text(size=14, angle=0), 
@@ -66,21 +66,24 @@ p + coord_flip() + scale_color_manual(values = wes_palette("GrandBudapest")) +
 
 library(dplyr)
 
-m <- mayfly %>% group_by(fish, lake) %>% summarise(total=sum(mayfly), avg=(mean(mayfly)))
+m <- mayfly %>% filter(round == 1) %>%
+  mutate(fish=ifelse(fish=="fish","fish-containing", fish)) %>%
+  group_by(fish, lake) %>% summarise(total=sum(mayfly), avg=(mean(mayfly)))
 
 #Boxplot of total mayflies by lake type!!! YAY!
-pretty <- ggplot(m) + 
-  geom_boxplot(aes(x=fish, y=total, fill=fish)) +
+ pretty <- ggplot(m) + 
+  geom_boxplot(width = 0.5, aes(x=fish, y=total, fill=fish)) +
   theme_bw() + 
   scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
-  labs(title = NULL, 
-       x = "lake type", 
-       y = "# of mayflies") + 
+  labs(title = "Mayfly abundance in July", 
+       x = NULL,
+       y = NULL) + 
+  theme_minimal() +
   theme(legend.position="none", 
-        plot.title = element_text(face="bold", size=20),
-        axis.title = element_text(face="bold", size=20), 
-        axis.text.x = element_text(size=20, angle=0), 
-        axis.text.y = element_text(size=20, angle=0))
+        plot.title = element_text(family = "Helvetica", face="bold", size=30),
+        axis.title = element_text(family = "Helvetica",  size=25), 
+        axis.text.x = element_text(family = "Helvetica", face="bold", size=25, angle=0), 
+        axis.text.y = element_text(family = "Helvetica", face="bold", size=25, angle=0))
 
 t.test(total ~ fish, data = m)
 t.test(mayfly ~ fish, data = mayfly)

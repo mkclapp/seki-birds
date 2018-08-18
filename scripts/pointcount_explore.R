@@ -193,8 +193,18 @@ ggplot(spec_stats_2015, aes(x=spec_name, y=mean_count, fill=fish)) +
                 aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals per point, year 2015")
+  labs(x = NULL, y = " mean count of individuals per point (+/- s.e.)", 
+       title = "Mean count of individuals per point, year 2015")
 
+# for the poster
+doo <- ggplot(spec_stats_2015, aes(x=spec_name, y=mean_count, fill=fish)) +
+  geom_bar(stat="identity", position=position_dodge(), width = 0.6) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Species", y = "mean count of individuals per 10-min point count", title = NULL)
+doo + geom_errorbar(position=position_dodge(),
+                    aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6))
 # all years
 spec_stats_fish <- spec %>% group_by(fish, species) %>%
   summarise(num_surveys = n(),
