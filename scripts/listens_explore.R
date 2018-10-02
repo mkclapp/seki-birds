@@ -13,6 +13,7 @@ library(vegan)
 library(plotrix)
 library(lme4)
 
+cbPalette <- viridis(10)
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Supplemental Info -------------------------------------------------------
@@ -93,8 +94,9 @@ temps$identifier <- paste(temps$site, temps$timestamp, sep = "_")
 temps2 <- temps %>% select(identifier, timestamp, temp) %>%
   group_by(identifier) %>%
   summarise(mean_temp = mean(temp))
-
+# TODO: why is the above not working? "Error in select(., identifier, timestamp, temp) : unused arguments (identifier, timestamp, temp)""
 # new dataframe with temperature information
+# moving on without temps then
 audio2 <- merge(audio, temps2, by = "identifier", all.y = FALSE)
 n_distinct(audio2$identifier) # 99 files-- that is correct
 
@@ -159,7 +161,8 @@ ggplot(data = background_info) +
 # Call activity -----------------------------------------------------------
 # for all recordings at once (no stats)
 # first need to add recording info in order to scale by # seconds sampled
-birds <- merge(birds, rec_summary, by = "lake")
+birds <- merge(birds, rec_summary[,c(1,3)], by = "lake")
+#birds <- merge(birds, lakeinfo, by = "lake")
 
 # call_activity is the TOTAL number of seconds of ALL recordings the bird was vocalizing per LAKE, across all recordings 
 # CAUTION: this is not rarefied to sample size!
@@ -233,14 +236,29 @@ foo3 <- foo3 %>%
   group_by(basin, fish, lake, timestamp, ID) %>%
   summarise(ncalls = n())
 
+# add names of species not present in recordings (for figure comparison w pt ct)
+# which entries in foo have a species name that does not match any species in spec_stats_2015?
+foo3$ID[!foo3$ID %in% unique(spec_stats_2015$species)] 
+# and conversely, which entries in spec_stats_2015 have a species name that does not match any species in foo3?
+spec_stats_2015$species[!spec_stats_2015$species %in% unique(foo3$ID)]
+
 # now create columns for every combo of ID x location
 foo3 <- spread(data = foo3, key = ID, value = ncalls, fill = 0)
 
+# so we need to add CHSP, BRBL, and WIWA to foo3, and WAVI to spec_stats_2015
+foo3$BRBL <- rep(0,nrow(foo3))
+foo3$CHSP <- rep(0,nrow(foo3))
+foo3$WIWA <- rep(0,nrow(foo3))
 
+# then regather the data with all the species columns
+# run colnames to see which is the last column
+colnames(foo3) # it's WIWA
 foo3 <- gather(data = foo3, key = ID, value = ncalls, ... = AMPI:WIWA)    
 
+# check to see that it gathered the new columns
+unique(foo3$ID) # yay!
 
-#transform log(0)s to 0
+# log calltime?
 
 # foostats calculates the mean # of seconds per 10-min recording that each species calling, regardless of basin
 foostats3 <- foo3 %>% group_by(fish, ID) %>%
@@ -251,19 +269,27 @@ foostats3 <- foo3 %>% group_by(fish, ID) %>%
 foostats3 <- merge(foostats3, spec_names, by.x = "ID", by.y = "species")
 
 f <- ggplot(foostats3) +
-  geom_bar(aes(x=spec_name, y=mean, fill=fish),
-           stat="identity", position = position_dodge(), width=0.7) +
+  geom_bar(width=0.8, aes(x=spec_name, y=mean, fill=fish),
+           stat="identity", position = position_dodge()) +
   scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title=NULL, 
-       x=NULL, 
-       y="mean number of calls (+/- s.e.) per 10-minute audio recording") +
-  guides(fill="none")
-
-f +  geom_errorbar(data = foostats3,
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = NULL, 
+       x = NULL,
+       y = NULL) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+  
+f + geom_errorbar(data = foostats3, width=0.8,
                    aes(x=spec_name, y=mean, ymin = mean-sem, ymax = mean+sem, 
-                       fill=fish, width = 0.7), position=position_dodge())
+                       fill=fish), position=position_dodge())
+ggsave(filename = "listens_by_spp_2.png", device = "png", path = "poster_plots/", width = 7, height = 3, units = "in")
+
+
 
 # Species-specific graphs of active time ----------------------------------
 
@@ -361,44 +387,204 @@ ggplot(DEJU) +
 
 
 
-# iNEXT -------------------------------------------------------------------
-library(iNEXT)
+
+
+# Rarefaction/Specaccum in vegan --------------------------------------------
+
+library(vegan)
 
 # prepping data for rarefaction
 
 divmatrix <- birds %>% group_by(lake, ID, name) %>%
-  summarise(time_calling = sum(Delta.Time..s.)) # seconds the species is audible within a 10-minute window 
-
-# make by lake
-divmatrix_lake <- divmatrix %>% group_by(lake, ID) %>%
+  #summarise(time_calling = sum(Delta.Time..s.)) # seconds the species is audible within a 10-minute window 
   summarise(n_obs = n())
 
-divmatrix_lake <- spread(data = divmatrix_lake, 
+# make by lake
+# divmatrix_lake <- divmatrix %>% group_by(lake, ID) %>%
+#   summarise(n_obs = n())
+
+divmatrix <- spread(data = divmatrix, 
                          key = ID, 
                          value = n_obs,
                          fill = 0)
 
-divmatrix_lake$n_surveys <- rec_summary$n_samples
-divmatrix_lake <- as.data.frame(divmatrix_lake)
-rownames(divmatrix_lake) <- divmatrix_lake[,1]
-divmatrix_lake <- divmatrix_lake %>% select(-lake)
-# now reorder for iNEXT analysis
+# divmatrix_lake$n_surveys <- rec_summary$n_samples
+divmatrix <- as.data.frame(divmatrix)
+rownames(divmatrix) <- divmatrix[,2]
+divmatrix <- divmatrix[,3:19]
 
-divmatrix_lake <- divmatrix_lake[c(18,2:17)]
+# anddddd presence-absence matrix
+pa_matrix <- divmatrix
+pa_matrix[pa_matrix > 0] <- 1
 
-# below not working
-iNEXT(divmatrix_lake, q=0, datatype="incidence_freq", size=m)
+# vegdist(divmatrix, method = "raup", binary = T) dunno what this is
 
-str(ant)
+# we also need an "environmental" data matrix with info about elevation, lake area, etc.
+
+divmatrix.env <- birds %>% group_by(name, basin, fish, lake, date, time, elev_m, area_msq) %>%
+  summarise(n_obs = n()) # don't really need this but need to summarise something in order to make the table
+divmatrix.env <- as.data.frame(divmatrix.env)
+rownames(divmatrix.env) <- divmatrix.env[,1]
+divmatrix.env <- divmatrix.env %>% select(-name)
+
+# species accumulation
+# this is going to generate a curve that summarises ALL 10-minute recordings
+# it'll show us the number of samples we need in order to sample the theoretical complete community
+# later i'll do it by lake
+
+sp1 <- specaccum(pa_matrix, "random")
+
+summary(sp1)
+plot(sp1, ci.type="poly", lwd=2, ci.lty=0, ci.col="lightgray") 
+ 
+# plotting sp1-4, it seems like at least for specaccum, abundance data are not used
+
+# by lake
+# janky but will do for now. 
+# TODO: re-do the way I make divmatrix to reduce redundancy here
+
+divtot.audio <- cbind(divmatrix, divmatrix.env) 
+X <- split(divtot.audio, divtot.audio$lake)
+names(X) <- unique(divtot.audio$lake) 
+list2env(X, envir = .GlobalEnv) # OMG i'm so cool with these two lines of code
+
+# SPECIES ACCUMULATION CURVES FOR ALL SITES, LISTEN DATA
+# TODO: there must be a way to run a for loop to do this 
+curve_amphit1 = specaccum(AMPHIT1[, 1:17], method = "random")
+curve_amphit2 = specaccum(AMPHIT2[, 1:17], method = "random")
+curve_barret1 = specaccum(BARRET1[, 1:17], method = "random")
+curve_barret2 = specaccum(BARRET2[, 1:17], method = "random")
+curve_center1 = specaccum(CENTER1[, 1:17], method = "random")
+curve_center2 = specaccum(CENTER2[, 1:17], method = "random")
+curve_upkern1 = specaccum(UPKERN1[, 1:17], method = "random")
+curve_upkern2 = specaccum(UPKERN2[, 1:17], method = "random")
+curve_wright1 = specaccum(WRIGHT1[, 1:17], method = "random")
+curve_wright2 = specaccum(WRIGHT2[, 1:17], method = "random")
+
+#plot curve_all first
+plot(sp1, ci.type="poly", lwd=2, ci.lty=0, ci.col="lightgray", xlab = "", ylab="")
+#then plot the rest
+plot(curve_amphit1, add = TRUE, col = cbPalette[1], lwd=2, ci.lty=0) 
+plot(curve_amphit2, add = TRUE, col = cbPalette[2], lwd=2, ci.lty=0)
+plot(curve_barret1, add = TRUE, col = cbPalette[3], lwd=2, ci.lty=0)
+plot(curve_barret2, add = TRUE, col = cbPalette[4], lwd=2, ci.lty=0)
+plot(curve_center1, add = TRUE, col = cbPalette[5], lwd=2, ci.lty=0)
+plot(curve_center2, add = TRUE, col = cbPalette[6], lwd=2, ci.lty=0)
+plot(curve_upkern1, add = TRUE, col = cbPalette[7], lwd=2, ci.lty=0)
+plot(curve_upkern2, add = TRUE, col = cbPalette[8], lwd=2, ci.lty=0) 
+plot(curve_wright1, add = TRUE, col = cbPalette[9], lwd=2, ci.lty=0)
+plot(curve_wright2, add = TRUE, col = cbPalette[10], lwd=2, ci.lty=0)
+legend("bottomright", pool$lake, fill=cbPalette[1:10], bty="n")
+# etc very cool thanks I think I need to do rarefaction if I want to figure out the "howmany samples needed" question
+# specaccum of the entire community suggests probably somewhere aroud 40 samples 
+
+# now make an insert with just the lake-level specaccum estimates
+plot(curve_amphit1, add = TRUE, col = cbPalette[1]) 
+plot(curve_amphit2, add = TRUE, col = cbPalette[2])
+plot(curve_barret1, add = TRUE, col = cbPalette[3])
+plot(curve_barret2, add = TRUE, col = cbPalette[4])
+plot(curve_center1, col = cbPalette[5], xlab = "", ylab="")
+plot(curve_center2, add = TRUE, col = cbPalette[6])
+plot(curve_upkern1, add = TRUE, col = cbPalette[7])
+plot(curve_upkern2, add = TRUE, col = cbPalette[8]) # start here because it has the most sites
+plot(curve_wright1, add = TRUE, col = cbPalette[9])
+plot(curve_wright2, add = TRUE, col = cbPalette[10])
+abline(v=7, add=TRUE)
+legend("bottomright", pool$lake, fill=cbPalette[1:10], bty="n")
+specpool(divmatrix,pool = divmatrix.env$lake, smallsample = TRUE)
+pool = with(divmatrix.env, specpool(divmatrix, lake))
+
+fish <- rep(c("fishless", "fish"), 5)
+pool$fish <- fish
+pool$lake = rownames(pool)
+
+ggplot(d=pool)+
+  geom_point(aes(x=Species, y=chao, color=lake)) +
+  coord_cartesian(xlim=c(0,16), ylim = c(0,16)) +
+  geom_abline(intercept = 0, slope = 1) 
+
+ggplot(data=pool, aes(x=lake, y=chao, fill=lake)) +
+  geom_bar(stat = "identity", position=position_dodge()) +
+  geom_errorbar(position=position_dodge(), 
+                aes(ymin=chao-chao.se, ymax=chao+chao.se)) +
+  scale_fill_viridis_d()
+
+# now just fish/fishless
+# note that this reassigns X to new things!
+divtot.audio <- cbind(divmatrix, divmatrix.env) 
+X <- split(divtot.audio, divtot.audio$fish)
+#names(X) <- "" 
+list2env(X, envir = .GlobalEnv)
+
+curve_fish = specaccum(fish[, 1:17], method = "random")
+curve_fishless = specaccum(fishless[, 1:17], method = "random")
+
+plot(sp1, ci.type="poly", lwd=2, ci.lty=0, ci.col="lightgray", xlab = "# of samples", ylab="cumulative species richness")
+plot(curve_fishless, add = TRUE, col = cbPalette[6])
+plot(curve_fish, add = TRUE, col = cbPalette[2]) 
+legend("bottomright", legend=c("fishless", "fish-containing", "all lakes"), fill=cbPalette[c(2,6,1)], bty="n")
+
+# are lake types different according to audio data?
+# try a PERMANOVA
+p1 = adonis(pa_matrix ~ fish*basin + mean_temp + elev_m, data = divmatrix.env, method = "raup")
+p1
+
+p2 = adonis(specComm2 ~fish*basin + date, data = spec2)
+
+#Yes, basins are different and fish lakes are different
+#but how?
+
+n1 = metaMDS(divmatrix, trymax=100)
+n1
+
+# RAREFACTION CURVES FOR ALL SITES, LISTEN DATA
+# NOT WORKING ARGH
+# first, all the data
+S <- specnumber(divmatrix) # observed number of species
+(raremax <- min(rowSums(divmatrix))) # this calculates the minimum number of 
+Srare <- rarefy(pa_matrix, 1) # rarefied number of species 
+plot(S, Srare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species")
+abline(0, 1)
+rarecurve(pa_matrix, step = 1, sample = raremax, col = divmatrix.env$fish, cex = 0.6)
+
+skjgnsdf <- birds %>% group_by(identifier) %>%
+  summarise(sel=n(),
+            spp=n_distinct(ID))
+
 
 # MODEL STUFF -------------------------------------------------------------
 
 # prepping for GLM modeling species richness
 
-dat <- birds %>% select(identifier, basin, fish, lake, timestamp, mean_temp, elev_m, ID) 
+dat <- birds %>% select(identifier, basin, fish, lake, timestamp, elev_m, ID) 
 
-dat <- dat %>% group_by(basin, fish, lake, timestamp, elev_m, mean_temp) %>% 
+richlake <- birds %>% group_by(basin, fish, lake, elev_m) %>% 
   summarise(n_spec = n_distinct(ID))
+
+dat.sum <- dat %>% group_by(basin, fish) %>%
+  summarise(mean_rich = mean(n_spec),
+            median_count = median(n_spec),
+            sd_count = sd(n_spec),
+            se_count = std.error(n_spec))
+
+ggplot(d=dat)+
+  geom_boxplot(aes(x=fish, y=n_spec, fill=fish), width=0.4) +
+  #facet_wrap(~basin, nrow = 1) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = NULL, 
+       x = NULL,
+       y = NULL) + 
+  theme_bw() +
+  theme(strip.text.x = element_text(size = 18),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_text(family = "Helvetica", size=18),
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+  
 
 glimpse(dat)
 
@@ -428,7 +614,7 @@ ggplot(dat2) +
 library(lme4)
 # elev needs to be scaled because the numbers are so big:
 dat$elev_m.s <- scale(dat$elev_m)
-m1 <- glmer(n_spec ~ fish + elev_m.s + (1|basin/lake),  family = poisson, data = dat, glmerControl(calc.derivs = F))
+m1 <- glmer(n_spec ~ fish + elev_m.s + (1|basin/lake), family = poisson, data = dat, glmerControl(calc.derivs = F))
 plot(fitted(m1), resid(m1)) 
 qqnorm(resid(m1))
 qqline(resid(m1))
@@ -443,7 +629,7 @@ ggplot(data=dat.sum, aes(x=elev_m, y=tot_spec, color=fish)) +
   geom_point() +
   geom_smooth(method = "lm")
 
-ggplot(data=dat.sum, aes(x=n_samples, y=tot_spec, fill=fish)) +
+ggplot(data=dat.sum, aes(x=n_samples, y=tot_spec)) +
   geom_point() +
   geom_smooth(method = "lm")
 
@@ -460,33 +646,3 @@ plot(fitted(m2), resid(m2))
 qqnorm(resid(m2))
 qqline(resid(m2))
 summary(m2)
-
-# prepping data for rarefaction
-
-divmatrix <- birds %>% group_by(lake, ID, name) %>%
-  summarise(time_calling = sum(Delta.Time..s.)) # seconds the species is audible within a 10-minute window 
-
-# make by lake: n_obs is the number of surveys the species was detected
-divmatrix_lake <- divmatrix %>% group_by(lake, ID) %>%
-  summarise(n_obs = n())
-
-divmatrix_lake <- spread(data = divmatrix_lake, 
-                    key = ID, 
-                    value = n_obs,
-                    fill = 0)
-
-divmatrix_lake$n_surveys <- rec_summary$n_samples
-divmatrix_lake <- as.data.frame(divmatrix_lake)
-rownames(divmatrix_lake) <- divmatrix_lake[,1]
-divmatrix_lake <- divmatrix_lake %>% select(-lake)
-divmatrix_lake <- divmatrix_lake %>% select(-n_surveys)
-
-divmatrix <- as.data.frame(divmatrix) # assigns the name column as rownames
-rownames(divmatrix) <- divmatrix[,1]
-divmatrix <- divmatrix %>% select(-name) # removes the name column
-
-
-
-# make a presence/absence matrix 
-pa_matrix <- divmatrix
-pa_matrix[pa_matrix > 0] <- 1

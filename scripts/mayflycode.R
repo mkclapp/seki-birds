@@ -5,13 +5,11 @@ library(wesanderson)
 
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
+# Data Organization ------------------------------------------------
+
 mayfly<-read.csv("../data/insects/mayfly.csv")
-
-### DATA ORGANIZATION ###
-
 # change categorical variables to factors
 mayfly$round <- factor(mayfly$round)
-
 
 # clean the dates
 # just be cautious: this assumes(!) that minutes are always
@@ -19,8 +17,8 @@ mayfly$round <- factor(mayfly$round)
 mayfly$time_in <- gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", mayfly$time_in)
 mayfly$time_out <- gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", mayfly$time_out)
 
-mayfly$date_in <- parse_date_time(paste(mayfly$date_in, mayfly$time_in), "mdy hm")
-mayfly$date_out <- parse_date_time(paste(mayfly$date_out, mayfly$time_out), "mdy hm")
+mayfly$date_in <- parse_date_time(paste(mayfly$date_in, mayfly$time_in), "mdy HM")
+mayfly$date_out <- parse_date_time(paste(mayfly$date_out, mayfly$time_out), "mdy HM")
 
 # check to see that lubridate formatted the dates correctly
 print(mayfly$date_out)
@@ -32,7 +30,7 @@ mayfly$fish <- mayfly$lake
 # mayfly$fish <- gsub('[^12]', '', mayfly$lake)
 # Vince's — here I use named labels, as this is safer usually 
 # (it's easy for 1 and 2 to accidentally become integers and funny stuff to happen)
-mayfly$fish <- factor(ifelse(gsub('[^12]', '', mayfly$lake) == "2", "fish", "fishless"))
+mayfly$fish <- factor(ifelse(gsub('[^12]', '', mayfly$lake) == "2", "fish-containing", "fishless"))
 # remove the 1/2 on the lake 
 mayfly$basin <- factor(gsub("[12]", "\\1", mayfly$lake))
 
@@ -44,6 +42,9 @@ head(mayfly$lake_fish)
 mayfly$fish <- factor(mayfly$fish)
 mayfly$lake <- factor(mayfly$lake)
 mayfly$lake_fish <- factor(mayfly$lake_fish)
+
+
+# Plots -------------------------------------------------------------------
 
 
 # Now we want to see if we could recreate Mary's plot in her notebook
@@ -66,14 +67,12 @@ p + coord_flip() +
 
 library(dplyr)
 
-m <- mayfly %>% filter(round == 1) %>%
-  mutate(fish=ifelse(fish=="fish","fish-containing", fish)) %>%
+m <- mayfly %>%
   group_by(fish, lake) %>% summarise(total=sum(mayfly), avg=(mean(mayfly)))
 
 #Boxplot of total mayflies by lake type!!! YAY!
  pretty <- ggplot(m) + 
   geom_boxplot(width = 0.5, aes(x=fish, y=total, fill=fish)) +
-  theme_bw() + 
   scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
   labs(title = "Mayfly abundance in July", 
        x = NULL,

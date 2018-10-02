@@ -56,7 +56,9 @@ soundcount <- biophony %>% group_by(identifier, basin, fish, lake, ID) %>%
   summarise(n_sounds = n())
 head(soundcount)
 
-sumsum <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) %>%
+sumsum <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) 
+
+sumsum <- sumsum %>%
   gather(key = ID, value = soundcount, ... = AMPI:YRWA) %>%
   group_by(identifier, basin, fish, lake) %>%
   summarise(shannon = diversity(soundcount, index="shannon"))
@@ -66,7 +68,7 @@ frank <- merge(sumsum, indices, by = "identifier") #OMG it worked
 # plot against acoustic index 
 # (ACIout = Acoustic Complexity, AR = Acoustic Richness, Rough = Roughness)
 ggplot(frank) + 
-  geom_point(aes(x = Rough, y = shannon, color = lake))
+  geom_point(aes(x = ADI_step, y = shannon, color = lake))
 
 # birds only
 unique(birds$ID)
@@ -78,7 +80,8 @@ colnames(birdcount)
 sumbirds <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0) %>%
   gather(key = ID, value = soundcount, ... = AMPI:YRWA) %>%
   group_by(identifier, basin, fish, lake) %>%
-  summarise(shannon = diversity(soundcount, index="shannon"))
+  summarise(shannon = diversity(soundcount, index="shannon"),
+            simpson = diversity(soundcount, index="simpson"))
 
 frankbirds <- merge(sumbirds, indices, by = "identifier") #OMG it worked 
 
@@ -104,6 +107,24 @@ ggplot(frankbirds, aes(x = Rough, y = shannon)) +
        x = "Acoustic Roughness", y = "Shannon Diversity") +
   theme_minimal()
 
+ggplot(frankbirds, aes(x = ADI_step, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title=NULL,
+       x = "Acoustic Diversity Index (ADI)", y = "observed Shannon Diversity") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_text(family = "Helvetica", size=16, angle=90, hjust=1, vjust=0.5),
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+
+ggsave(filename = "ADIxShannon.png", device = "png", path = "poster_plots/", width = 5, height = 5, units = "in")
+
+
+
+
 library(lme4)
 
 colnames(frankbirds)
@@ -113,6 +134,9 @@ plot(fitted(maudio), resid(maudio))
 qqnorm(resid(maudio))
 qqline(resid(maudio))
 summary(maudio)
+
+
+
 
 maudio2 <- lm(shannon ~ BKdB_bird + ACIout + Hf + ADI_step, data = frankbirds)
 plot(fitted(maudio2), resid(maudio2)) 
@@ -134,3 +158,5 @@ ggplot(frankbirds, aes(x = BKdB_bird, y = shannon)) +
   labs(title="Acoustic Diversity Index and background decibel level in 100 audio samples",
        x = "Background decibel level in mid-range frequency band (1413-11220 Hz)", y = "Shannon Diversity") +
   theme_minimal()
+
+

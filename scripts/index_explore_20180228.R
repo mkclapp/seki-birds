@@ -94,6 +94,9 @@ upkern2015 <- morning %>%
 wright2015 <- morning %>%
   filter(basin == "WRIGHT")
 
+index15 <- morning %>%
+  filter(Yr==2015)
+
 
 # SUMMARY TABLES ----------------------------------------------------------
 
@@ -116,15 +119,24 @@ daily_Rough_means_2015 <- morning %>%
             sd_rough = sd(Rough),
             se = sd_rough / sqrt(N))
 
+daily_ADI_means_2015 <- morning %>%
+  filter(Yr == 2015) %>%
+  group_by(day, Site, basin, fish) %>%
+  summarize(N = length(ADI_step),
+            mean = mean(ADI_step), 
+            med = median(ADI_step), 
+            sd = sd(ADI_step),
+            se = sd / sqrt(N))
+
 # summary stats tables for each site (ACI)
 
-c16 <- center2016 %>% 
+c15 <- center2015 %>% 
   group_by(day, fish) %>%
-  summarize(N = length(ACIout),
-            mean_ACI = mean(ACIout), 
-            median_ACI = median(ACIout), 
-            sd_ACI = sd(ACIout),
-            se = sd_ACI / sqrt(N))
+  summarize(N = length(ADI_step),
+            mean = mean(ADI_step), 
+            med = median(ADI_step), 
+            sd = sd(ADI_step),
+            se = sd / sqrt(N))
 
 a15 <- amphit2015 %>% 
   group_by(Mo, fish) %>%
@@ -197,8 +209,15 @@ ggplot(morning, aes(ACIout, color = fish)) +
   geom_histogram(bins = 100) +
   facet_wrap(~basin)
 
+morning %>%
+  filter(Yr == 2015) %>%
+  ggplot()+
+  geom_boxplot(aes(x=day,y=ADI_step,color=fish))
 
-ggplot(center2015, aes(x = day, y = ACIout, colour = fish)) +
+ggplot(daily_ADI_means_2015, aes(x = day, y = mean, colour = fish)) +
+  geom_point(alpha = 0.2)
+
+ggplot(morning, aes(x = day, y = ACIout, colour = fish)) +
   geom_point(alpha = 0.2) +
   geom_smooth(se = FALSE, method = "lm")
 
@@ -210,7 +229,7 @@ ggplot(center2016, aes(x = day, y = ACIout, colour = fish)) +
 
 # Graphical representation of mean ACI over time 
 
-ggplot(data = ungroup(daily_ACI_means_2015), aes(x = day, y = mean_ACI, color = fish)) +
+ggplot(data = ungroup(daily_ADI_means_2015), aes(x = day, y = mean, color = fish)) +
   geom_point() +
   geom_smooth(method = "lm") +
   facet_wrap(~basin) +
@@ -254,12 +273,47 @@ ggplot(data = w15, aes(x = Mo, y = mean_ACI, group=fish, color=fish)) +
 # standard error isn't actually appropriate here because my data are non-independent 
 # need to do some bayesian shite to address this
   
+ggplot(data=daily_ADI_means_2015,aes(x=day, y=mean, color=fish)) +
+  geom_line(stat = "identity") +
+  geom_ribbon(aes(ymin=mean-se, ymax=mean+se, fill=fish), alpha=0.2) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = "seasonality in Acoustic Diversity Index (ADI)", 
+       x = "2015",
+       y = "mean Acoustic Diversity (ADI) +/- s.e.") + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=26),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_text(family = "Helvetica", size=16, angle=0, hjust=1, vjust=0.5),
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+ggsave(filename = "ADI_2015.png", device = "png", path = "poster_plots/", width = 7, height = 5, units = "in")
+
 
 # SEASONAL PLOTS of ACI by BASIN:
 # TODO: grey out windy days, make scales relative to format for ppt slides,
 # TODO: scale x by actual date range, not relative path to center df
+
+
+ggplot(data=c15,aes(x=day, y=mean, color=fish)) +
+  geom_line(stat = "identity") +
+  geom_ribbon(aes(ymin=mean-se, ymax=mean+se, fill=fish), alpha=0.2) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = "Acoustic Diversity Index (ADI): Center Basin 2015", 
+       x = NULL,
+       y = "mean Acoustic Diversity (ADI) +/- s.e.") + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=26),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_text(family = "Helvetica", size=16, angle=0, hjust=1, vjust=0.5),
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+
 centerAR <- ggplot() +
-  geom_boxplot(data = center2014, aes(x=day, y=Rough, group=interaction(day, fish), fill=fish)) + 
+  geom_boxplot(data = center2014, aes(x=day, y=ADI_step, group=interaction(day, fish), fill=fish)) + 
   #facet_wrap(~basin, ncol=1) + 
   theme_bw() +
   labs(title = "Acoustic Roughness", subtitle = "CENTER Basin, Morning Hours 2014", x = "Date", y = "Acoustic Roughness") +
@@ -273,17 +327,17 @@ centerAR <- ggplot() +
   #       strip.text.x = element_text(size = 24)) 
   ylim(0, 40) 
   # + scale_x_date(limits=c(min(center$day), max(center$day))) #removes some outliers for easier reading
-centerAR
+centerAR + facet_wrap(~fish)
 
 # ACI
-centerACI <- ggplot() +
-  geom_boxplot(data = center2015, aes(x=day, y=ACIout, group=interaction(day, fish), fill=fish)) + 
+centerADI <- ggplot() +
+  geom_boxplot(data = center2015, aes(x=day, y=ADI_step, group=interaction(day, fish), fill=fish)) + 
   theme_bw() +
   labs(title = "Acoustic Complexity Index (ACI)", 
        subtitle = "CENTER Basin, Morning Hours 2015", 
        x = "Date", y = "Acoustic Complexity Index (ACI)") +
   ylim(0,1.5)
-centerACI
+centerADI
 
 amphitACI <- ggplot() +
   geom_boxplot(data = amphit2015, aes(x=day, y=ACIout, group=interaction(day, fish), fill=fish)) + 

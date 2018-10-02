@@ -7,11 +7,12 @@ library(lme4)
 library(tidyverse)
 library(lubridate)
 library(chron)
-library(iNEXT)
+library(vegan)
 
 # Supplemental tables
-lakeinfo <- read_csv("../data/lakeinfo.csv", col_names = TRUE)
-spec_names <- read_csv("../data/species_names.csv") 
+lakeinfo <- read_csv("data/lakeinfo.csv", col_names = TRUE)
+spec_names <- read_csv("data/species_names.csv") 
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 
 # Tidying Raw Data (only needs to be done once) ---------------------------
@@ -45,9 +46,15 @@ d$distance[regexpr("FO", d$distance) != -1] <- "NA"
 d$distance <- as.integer(d$distance) 
 
 d$jday <- yday(d$date)
+# add species names to data matrix
+d <- merge(d, spec_names, by = "species")
 
-# code to add column with full species name (for graphing)
+# write out csv for full data matrix 
+write_csv(d, path = "data/pointcount_20180816.csv")
 
+# AOU code-species name table (DONE) --------------------------------------
+
+# this is compiled from the list of species from point count data-- missing WAVI and others from audio data
 spec_AOU <- sort(unique(d$species))
 spec_AOU
 spec_names <- c("American Pipit", "American Robin", "Brewer's Blackbird", "Cassin's Finch", "Chipping Sparrow",
@@ -57,15 +64,17 @@ spec_names <- c("American Pipit", "American Robin", "Brewer's Blackbird", "Cassi
                 "Unidentified Sparrow", "Unidentified Bird", "Yellow-Rumped Warbler")
 spec_names <- as.data.frame(cbind(spec_names, spec_AOU))
 colnames(spec_names) <- c("spec_name", "species")
+# !! WAVI is not listed in the species list. fix this.
+WAVI <- c("Warbling Vireo", "WAVI")
+spec_names <- rbind(spec_names, WAVI)
+
 write_csv(spec_names, path = "data/species_names.csv")
 
-d <- merge(d, spec_names, by = "species")
-# d$sm_temp <- as.numeric(paste(d$sm_temp))
 
-write_csv(d, path = "data/pointcount_20180816.csv")
-
+### START HERE ### (but not yet-- csv written to file not working nicely)
+# TODO: fix this
 # read in cleaned up point count csv (written to file 2018-08-16) ---------
-#d <- read_csv("data/pointcount_20180816.csv")
+#d <- read_csv("data/pointcount_20180816.csv") # for some reason this is not working nicely SO FUCK IT
 ## exploratory plots of species richness and abundance ---------------------
 
 ## restrict distance; exclude double-counts and unidentified species
@@ -118,13 +127,27 @@ ggplot(d300, aes(x=distance)) +
 
 ## species richness
 ## boxplots represent medians, 25% and 75% quantiles.
-# pt300 %>%
-#   filter(year(date)=="2016") %>%
-ggplot(data = pt300) +
-  geom_boxplot(aes(x=fish, y=nspecies, color=fish)) +
-  labs(x="treatment", y="species richness", title="Species Richness within 300m, 2014-2016") +
-  facet_wrap(~basin) +
-  theme_light()
+pt300 %>%
+  filter(year(date)=="2015") %>%
+ggplot() +
+  geom_boxplot(aes(x=fish, y=nspecies, fill=fish)) +
+  facet_wrap(~basin, nrow = 1) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = NULL, 
+       x = NULL,
+       y = NULL) + 
+  theme_bw() +
+  theme(strip.text.x = element_blank(), strip.background = element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        legend.position="bottom", 
+        legend.text = element_text(family = "Helvetica", size = 18),
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0, vjust = 0.75)) +
+  guides(fill=guide_legend(title=NULL))
 
 # trying to coerce the boxplots to means and SE
 
@@ -157,14 +180,17 @@ ggplot(data = e50) +
 # plots by species --------------------------------------------------------
 
 ## spec summarizes by entire point count, not just the songmeter point
-spec <- d300 %>% 
+spec <- d300 %>% filter(year(date)=="2015") %>%
   group_by(basin, fish, location, date, point, species) %>% 
   summarize(count=n())
 
 ## spread and gather give an entry for each species in the species pool, even if count = 0
 spec <- spread(data = spec, key=species, value=count, fill=0)
-spec <- gather(data = spec, key = species, ... = AMPI:YRWA) 
 
+spec$WAVI <- rep(0,nrow(spec))
+colnames(spec)
+spec <- gather(data = spec, key = species, ... = AMPI:YRWA) 
+unique(spec$species)
 library(plotrix) # for calculating standard error TO DO! dbl check this is calculating correctly??
 
 ## now calculate mean, median, and se for each species per location (averaging over survey date)
@@ -177,7 +203,7 @@ library(plotrix) # for calculating standard error TO DO! dbl check this is calcu
 #             se_count = std.error(value))
 
 # summary stats by treatment
-spec_stats_2015 <- spec %>% filter(year(date) == 2015) %>% group_by(fish, species) %>%
+spec_stats_2015 <- spec %>% filter(year(date) == "2015") %>% group_by(fish, species) %>%
   summarise(num_surveys = n(),
             mean_count = mean(value),
             median_count = median(value),
@@ -198,13 +224,24 @@ ggplot(spec_stats_2015, aes(x=spec_name, y=mean_count, fill=fish)) +
 
 # for the poster
 doo <- ggplot(spec_stats_2015, aes(x=spec_name, y=mean_count, fill=fish)) +
-  geom_bar(stat="identity", position=position_dodge(), width = 0.6) +
+  geom_bar(stat="identity", position=position_dodge(), width = 0.8) +
   scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Species", y = "mean count of individuals per 10-min point count", title = NULL)
-doo + geom_errorbar(position=position_dodge(),
-                    aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6))
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = NULL, 
+       x = NULL,
+       y = NULL) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_text(family = "Helvetica", size=16, angle=90, hjust=1, vjust=0.5),
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+doo + geom_errorbar(position=position_dodge(), width=0.8,
+                    aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.8))
+ggsave(filename = "ptct_by_spp.png", device = "png", path = "poster_plots/", width = 7, height = 5, units = "in")
+
+
 # all years
 spec_stats_fish <- spec %>% group_by(fish, species) %>%
   summarise(num_surveys = n(),
@@ -224,9 +261,32 @@ ggplot(spec_stats_fish, aes(x=spec_name, y=mean_count, fill=fish)) +
 
 # spec_sm summarizes for the songmeter point ONLY
 spec_sm <- d300 %>% 
-  filter(point=="1") %>%
-  group_by(basin, fish, date, species) %>% 
+  filter(point=="1", year(date)=="2015") %>%
+  group_by(basin, fish, location, date, species) %>% 
   summarize(count=n())
+
+n <- spec %>% group_by(basin, fish, lake, elev_m) %>% 
+  summarise(n_spec = n_distinct(ID))
+
+ggplot(d=birds)+
+  geom_boxplot(aes(x=fish, y=n_spec, fill=fish)) +
+  facet_wrap(~basin, nrow = 1) +
+  scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = NULL, 
+       x = NULL,
+       y = NULL) + 
+  theme_bw() +
+  theme(strip.text.x = element_text(size = 18),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        legend.position="none", 
+        plot.title = element_text(family = "Helvetica", size=30),
+        axis.title = element_text(family = "Helvetica", size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
+
+
 
 # the following spread/gather gives counts for each species for each date for each lake type
 # NOT individual lakes!
@@ -236,7 +296,7 @@ spec_sm <- gather(data = spec_sm, key = species, ... = AMPI:YRWA)
 # now add species names for graphing purposes
 
 spec_sm <- merge(spec_sm, spec_names, by = "species")
-
+spec_sm <- merge(spec_sm, lakeinfo, by.x = "location", by.y = "lake", all.y = FALSE)
 # ggplot(spec_sm, aes(x=species, y=value, fill=fish)) + 
 #   geom_boxplot() +
 #   labs(title = "number of birds per species within 300m of points",
@@ -259,6 +319,31 @@ ggplot(spec_sm_stats, aes(x=spec_name, y=mean_count, fill=fish)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals at SongMeter point, year 2015")
 
+# aaaaaand finally, point counts in early july only
+spec_stats_july <- spec %>% filter(year(date) == 2015 & month(date) == 7) %>% 
+  group_by(fish, species) %>%
+  summarise(num_surveys = n(),
+            mean_count = mean(value),
+            median_count = median(value),
+            sd_count = sd(value),
+            se_count = std.error(value))
+
+# and also including lake data
+spec_stats_july2 <- spec %>% filter(year(date) == 2015 & month(date) == 7) %>% 
+  group_by(basin, fish, location, species) %>%
+  summarise(num_surveys = n(),
+            mean_count = mean(value),
+            median_count = median(value),
+            sd_count = sd(value),
+            se_count = std.error(value))
+
+ggplot(spec_stats_july, aes(x=species, y=mean_count, fill=fish)) +
+  geom_bar(stat="identity", position=position_dodge(), width = 0.6) + 
+  geom_errorbar(position=position_dodge(), 
+                aes(ymin = mean_count-se_count, ymax = mean_count+se_count, width = 0.6)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Species", y = "mean count of individuals per point", title = "Mean count of individuals at point counts in July 2015") 
 
 # GLMS --------------------------------------------------------------------
 
@@ -271,6 +356,83 @@ ptct <- d300 %>%
 # elev needs to be scaled because the numbers are so big:
 ptct$elev_m.s <- scale(ptct$elev_m)
 ptct_m1 <- glmer(n_spec ~ fish + elev_m.s + (1|basin/lake), family = poisson, data = ptct, glmerControl(calc.derivs = F))
+
+
+# vegan -------------------------------------------------------------------
+# use spec and filter to year = 2015, no BARRETX
+spec <- spec %>% filter(location !="BARRETX")
+
+library(reshape2)
+
+#start with the point count data
+#First I want to  make it wide instead of long
+spec2 = dcast(spec, basin + fish + location + point + date ~ species, value.var = "value", fun.aggregate = sum)
+#remove the row names
+specComm = spec2[,6:21]
+
+specComm2 = specComm/rowSums(specComm) # relative abundance COOOOOOOOLLLLLLL
+
+spec2 <- merge(spec2, lakeinfo, by.x = "location", by.y = "lake", all.y = FALSE)
+spec2 <- merge(spec2, rec_summary, by.x = "location", by.y = "lake", all.y = FALSE)
+
+# SPECIES ACCUMULATION
+s3 <- specaccum(specComm, random=TRUE)
+
+# compare with curve generated by listens_explore
+plot(sp1, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue") 
+plot(s3, add=TRUE, ci.type = "poly", col = "darkgreen", lwd=2, ci.lty = 0, ci.col = "lightgreen")
+# wow pretty similar... pts cts slightly higher slope but still very much overlapping error
+
+# go by site
+Y <- split(spec2, spec2$location)
+names(Y) <- unique(spec2$location) # this overwrites the matrices from the listen data!  
+list2env(Y, envir = .GlobalEnv) # OMG i'm so cool with these two lines of code
+
+# SPECIES ACCUMULATION CURVES FOR ALL SITES, LISTEN DATA
+# TODO: there must be a way to run a for loop to do this 
+curve_amphit1 = specaccum(AMPHIT1[, 6:29], method = "random")
+curve_amphit2 = specaccum(AMPHIT2[, 6:29], method = "random")
+curve_barret1 = specaccum(BARRET1[, 6:29], method = "random")
+curve_barret2 = specaccum(BARRET2[, 6:29], method = "random")
+curve_center1 = specaccum(CENTER1[, 6:29], method = "random")
+curve_center2 = specaccum(CENTER2[, 6:29], method = "random")
+curve_upkern1 = specaccum(UPKERN1[, 6:29], method = "random")
+curve_upkern2 = specaccum(UPKERN2[, 6:29], method = "random")
+curve_wright1 = specaccum(WRIGHT1[, 6:29], method = "random")
+curve_wright2 = specaccum(WRIGHT2[, 6:29], method = "random")
+
+#plot curve_all first
+plot(s3)
+#then plot the rest
+plot(curve_amphit1, add = TRUE, col = cbPalette[1]) 
+plot(curve_amphit2, add = TRUE, col = cbPalette[2])
+plot(curve_barret1, add = TRUE, col = cbPalette[3])
+plot(curve_barret2, add = TRUE, col = cbPalette[4])
+plot(curve_center1, col = cbPalette[5])
+plot(curve_center2, add = TRUE, col = cbPalette[6])
+plot(curve_upkern1, add = TRUE, col = cbPalette[7])
+plot(curve_upkern1, add = TRUE, col = cbPalette[8])
+plot(curve_wright1, add = TRUE, col = cbPalette[9])
+plot(curve_wright2, add = TRUE, col = cbPalette[10])
+
+
+# community composition
+# try a PERMANOVA
+spec2$elev_m.s <- scale(spec2$elev_m)
+
+p1 = adonis(specComm~fish + basin + date + elev_m.s, data = spec2)
+p1
+
+#Yes, basins are different and fish lakes are different
+#but how?
+
+n1 = metaMDS(specComm, trymax = 999, distance = "raup")
+n1
+
+source("scripts/plotNMDS.R")
+PlotNMDS(n1, data = spec2, group = "fish")
+# nada. why did the NMDS show significant effects tho?! 
+
 
 # summaries separated by basin --------------------------------------------
 
@@ -370,7 +532,7 @@ plot(nspecies~fish, data=abdd)
 
 # summarize by species, too
 # spec2015 filters down to one point count per site
-spec2015 <- d %>% filter(date > "2015-06-07" & date < "2015-07-06" & distance < 151 & doublecount == "") %>% 
+spec2015 <- d300 %>% filter(date > "2015-06-07" & date < "2015-07-06") %>% 
   group_by(basin, fish, species) %>% 
   summarize(nspecies=n_distinct(species), total=n())
 
@@ -385,7 +547,7 @@ b <- ggplot(spec2015, aes(x=species, y=total, fill=fish)) +
   theme(legend.title = element_blank(),
         plot.title = element_text(face="bold", size=16),
         axis.title = element_text(face="bold", size=16),
-        axis.text.x = element_text(size=14, angle=0),
+        axis.text.x = element_text(size=14, angle=45,hjust=1,vjust=0.5),
         axis.text.y = element_text(size=14, angle=0))
 b
 
