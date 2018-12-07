@@ -12,8 +12,10 @@ library(chron)
 library(vegan)
 library(plotrix)
 library(lme4)
+library(viridis)
 
 cbPalette <- viridis(10)
+#cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Supplemental Info -------------------------------------------------------
@@ -35,8 +37,12 @@ length(file_names) # this shows us that a selection table is missing. TODO: find
 # they're in, but i need a way to add the identifying info to each row. 
 # another option is to write a for loop that reads in each file, adds a column called "name_ID" that adds the filename to it, then rbinds it to the previous table read in
 # we need the matching spreadsheet again
+
 clipNames <- read_csv("data/filenames_batch_20180306_namesonly.csv")
-clipNames$name[!clipNames$name %in% unique(file_names)] # shows us the identity of the file that is missing in file_names
+clipNames$name <- substr(clipNames$name, 1, 23)
+
+clipNames$name[!clipNames$name %in% file_names] # shows us the identity of the file that is missing in file_names
+# the above doesn't work for me anymore
 
 audio <- do.call("rbind", lapply(file_names, read.delim))
 
@@ -48,7 +54,7 @@ audio <- merge(audio, clipNames, by.x = "Begin.File", by.y = "hidden_name") # si
 audio <- audio %>% select(Begin.File, Selection, Begin.Time..s., Delta.Time..s., Max.Power..dB., ID, NOTES, name)
 
 # add columns for lake, treatment, and basin
-audio <- audio %>% separate(name, c("lake", "date", "time", "null"), sep="_", remove=FALSE)
+audio <- audio %>% separate(name, c("lake", "date", "time"), sep="_", remove=FALSE)
 audio <- audio %>% separate(lake, c("basin", "fish"), sep=-1, remove=FALSE)
 
 audio$fish <- factor(ifelse(gsub('[^12]', '', audio$lake) == "2", "fish", "fishless"))
@@ -72,7 +78,9 @@ head(audio)
 unique(audio$ID) # returns all the different entries for ID
 unique(audio$NOTES) # lol
 
-write_csv(audio, path = "data/audio_listen_data_clean_20180814.csv",col_names = TRUE)
+write_csv(audio, path = "data/audio_listen_data_clean_20181125.csv",col_names = TRUE)
+
+
 
 
 # Tidying ----------------------------------------------------------------- 
@@ -113,18 +121,21 @@ birds <- filter(audio2, !grepl("[*]",NOTES), !grepl("fledg", NOTES),
 n_distinct(birds$identifier)
 
 # add elevation and area data
-birds <- merge(birds, lakeinfo[,c(1,4,5)], by = "lake", all.y = FALSE)
+birds <- merge(birds, lakeinfo[,c(1,4,5)], by = "lake")
 write_csv(birds, "data/listendata_allbirds.csv")
 
 # Mayfly data (optional) --------------------------------------------------
 
 mayfly <- read_csv("data/insects/mayfly_counts.csv")
 
-mayfly_smry <- mayfly %>% group_by(round, lake, fish) %>%
-  summarise(dailysum = sum(mayfly)/daysin, mean = mean(mayfly))
+mayfly_smry <- mayfly %>% group_by(round, basin, lake, fish) %>%
+  summarise(dailysum = sum(mayfly/daysin), 
+            mean = mean(mayfly),
+            sd = sd(mayfly))
 
 ggplot(data = mayfly_smry) +
-  geom_point(aes(x = round, y = sum, color = fish))
+  geom_col(aes(x = lake, y = mean, fill = fish)) +
+  geom_error
 
 stickyeffort <- mayfly %>% select(lake, round, date_in, date_out, daysin)
 glimpse(stickyeffort)
@@ -150,8 +161,17 @@ background_info <- audio %>% filter(ID == "background") %>%
             max_power = max(Max.Power..dB.),
             sd_power = sd(Max.Power..dB.)) 
 
-ggplot(data = background_info) +
-  geom_boxplot(aes(x = lake, y = median_power))
+ ggplot(data = background_info) +
+  geom_boxplot(aes(x = lake, y = mean_power))
+ 
+ background_avg_power <- audio %>% filter(ID == "background") %>%
+   group_by(lake, date) %>%
+   summarize(num_bk_measures = n(),
+             mean_power = mean(Max.Power..dB.),
+             median_power = median(Max.Power..dB.),
+             min_power = min(Max.Power..dB.),
+             max_power = max(Max.Power..dB.),
+             sd_power = sd(Max.Power..dB.)) 
 
 # basically... this sucks; it implies that the noise floors of the mics are very different, which means that detectability may be significantly different between them
 # TO DO: contact Kurt to characterize background noise more robustly by site
@@ -161,7 +181,7 @@ ggplot(data = background_info) +
 # Call activity -----------------------------------------------------------
 # for all recordings at once (no stats)
 # first need to add recording info in order to scale by # seconds sampled
-birds <- merge(birds, rec_summary[,c(1,3)], by = "lake")
+birds <- merge(birds, rec_summary[,c(1,3,5)], by = "lake")
 #birds <- merge(birds, lakeinfo, by = "lake")
 
 # call_activity is the TOTAL number of seconds of ALL recordings the bird was vocalizing per LAKE, across all recordings 
@@ -253,7 +273,7 @@ foo3$WIWA <- rep(0,nrow(foo3))
 # then regather the data with all the species columns
 # run colnames to see which is the last column
 colnames(foo3) # it's WIWA
-foo3 <- gather(data = foo3, key = ID, value = ncalls, ... = AMPI:WIWA)    
+foo3 <- gather(data = foo3, key = ID, value = ncalls, ... = AMPI:YRWA)    
 
 # check to see that it gathered the new columns
 unique(foo3$ID) # yay!
@@ -281,7 +301,7 @@ f <- ggplot(foostats3) +
         legend.position="none", 
         plot.title = element_text(family = "Helvetica", size=30),
         axis.title = element_text(family = "Helvetica", size=18), 
-        axis.text.x = element_blank(), 
+        axis.text.x = element_text(family = "Helvetica", size=12, angle=50, hjust=1, vjust=1),
         axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
   
 f + geom_errorbar(data = foostats3, width=0.8,

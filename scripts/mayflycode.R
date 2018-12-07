@@ -74,12 +74,12 @@ m <- mayfly %>%
  pretty <- ggplot(m) + 
   geom_boxplot(width = 0.5, aes(x=fish, y=total, fill=fish)) +
   scale_fill_manual(values = c(cbPalette[2], cbPalette[6])) +
-  labs(title = "Mayfly abundance in July", 
+  labs(title = NULL, 
        x = NULL,
        y = NULL) + 
   theme_minimal() +
   theme(legend.position="none", 
-        plot.title = element_text(family = "Helvetica", face="bold", size=30),
+        plot.title = element_text(family = "Helvetica", face="bold", size=0),
         axis.title = element_text(family = "Helvetica",  size=25), 
         axis.text.x = element_text(family = "Helvetica", face="bold", size=25, angle=0), 
         axis.text.y = element_text(family = "Helvetica", face="bold", size=25, angle=0))

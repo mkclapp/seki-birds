@@ -1,6 +1,8 @@
 # Author: Mary Clapp
 # Script to explore and display Acoustic Index Data 
 # Edited 2/8/2018 from previous version to run on acoustic indices generated 2/5/2018
+# Edited 10/30/2018 to run on newly calculated indices from 'calculate_ACI_NVSPL_V19b_Generic_MKC.R'
+# NOTE that the new indices were calculated from 1413-8913 Hz, NOT 11220 Hz!
 
 rm(list=ls(all=TRUE)) 
 
@@ -22,11 +24,14 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 #file_names <- list.files("../data/NVSPL/2015/CENTER", full.names = TRUE) #add extension definition?
 #file_names <- list.files("../data/indices/2015/ten", full.names = TRUE) 
 #file_names <- list.files("../data/indices/2014/ten", full.names = TRUE) 
-file_names <- list.files("../data/indices/2018_02_05/", full.names = TRUE, pattern = "*.csv")
+#file_names <- list.files("../data/indices/2018_02_05/", full.names = TRUE, pattern = "*.csv")
+file_names <- list.files("data/indices/2018_10_02", full.names = TRUE)
 
 d <- do.call("rbind",lapply(file_names,read.csv))
-d <- subset(d, select=c(Site, Date, Yr, Mo, Day, Hr, Min, Sec, ACIout, BKdB_low, BKdB_bird, avgAMP,
-                        L10AMP, Hf, Ht, EI, Rough, ADI_step, Eveness_step, AR))
+d <- subset(d, select=c(Site, Date, Yr, Mo, Day, Hr, Min, Sec, 
+                        ACIout, ACIoutI, ACIoutN,
+                        BKdB_low,BKdBA_low, BKdB_bird, BKdBA_bird, avgAMP, L10AMP, dif_L10L90,
+                        Hf, Ht, EI, Rough, ADI_step, Eveness_step, AR))
 
 # clean up dates and times
 d <- d %>%
@@ -52,6 +57,12 @@ d$fish <- factor(ifelse(gsub('[^12]', '', d$fish) == "2", "fish", "fishless"))
 d$wind <- d$BKdB_low > 60
 # d$hrs <- as.factor(hours(d$time)) #for looking at ACI by hour... I don't think I need this
 
+# ACI 
+
+ 
+ggplot(data=d, aes(x=ACIout, y=ACIoutN, alpha = 0.2, color = Site)) +
+  geom_point() +
+  geom_smooth(method = 'lm')
 
 # SUBSET DATA -------------------------------------------------------------
 
@@ -209,17 +220,9 @@ ggplot(morning, aes(ACIout, color = fish)) +
   geom_histogram(bins = 100) +
   facet_wrap(~basin)
 
-morning %>%
-  filter(Yr == 2015) %>%
-  ggplot()+
-  geom_boxplot(aes(x=day,y=ADI_step,color=fish))
 
 ggplot(daily_ADI_means_2015, aes(x = day, y = mean, colour = fish)) +
   geom_point(alpha = 0.2)
-
-ggplot(morning, aes(x = day, y = ACIout, colour = fish)) +
-  geom_point(alpha = 0.2) +
-  geom_smooth(se = FALSE, method = "lm")
 
 ggplot(center2016, aes(x = day, y = ACIout, colour = fish)) +
   geom_point(alpha = 0.2) +
@@ -458,9 +461,9 @@ centernoise
 
 # overall SPL 
 centerloudness <- ggplot() + 
-  geom_boxplot(data = center, aes(x=day, y=BKdB_bird, group=interaction(day, fish), fill=fish)) + 
+  geom_boxplot(data = center2015, aes(x=day, y=avgAMP, group=interaction(day, fish), fill=fish)) + 
   theme_bw() +
-  labs(title = "Average Amplitude, bird frequencies (dB)", 
+  labs(title = "Average Amplitude", 
        subtitle = "CENTER Basin, Morning Hours 2016", 
        x = "Date", y = "(dB)") 
 centerloudness
@@ -472,10 +475,8 @@ ggplot(data = center, aes(x=BKdB_low, y=ACIout)) +
 ggplot(data = center, aes(x=BKdB_low, y=Rough)) +
   geom_point()
 
-
-
 #1 day only
-wrightplot <- ggplot(data = wright, aes(x=Timestamp, y=ACIout, group=interaction(day, fish))) +
+wrightplot <- ggplot(data = wright2015, aes(x=Timestamp, y=ACIout, group=interaction(day, fish))) +
   geom_line(aes(fill=fish)) + 
   facet_wrap(~basin, ncol=1) + 
   theme_bw() +
@@ -487,7 +488,7 @@ wrightplot <- ggplot(data = wright, aes(x=Timestamp, y=ACIout, group=interaction
         legend.text = element_text(size = 26),
         legend.position = "none",
         strip.text.x = element_text(size = 24)) +
-  ylim(0, 1.5) + scale_x_date(limits=c(min(center$day), max(center$day)))
+  ylim(0, 1.5)
 wrightplot
 
 # ACI for one month at a time
@@ -511,15 +512,15 @@ ggplot(d) +
 ggplot(d) +
   geom_boxplot(aes(x=as.factor(hours(time)), y=ACIout)) +
   theme_bw() +
-  labs(x = "hour of the day", y = "Acoustic Complexity Index (ACI)") +
+  labs(x = "hour of the day", y = "ACIout") +
   theme(axis.title = element_text(size = 26), 
         axis.text = element_text(size = 20), 
         plot.title = element_text(size = rel(2), face = "bold"),
         legend.title = element_text(size = 26, face = "bold"),
         legend.text = element_text(size = 26),
         legend.position = "none",
-        strip.text.x = element_text(size = 24)) +
-  facet_wrap(~fish, ncol=1)
+        strip.text.x = element_text(size = 24)) 
+  #facet_wrap(~fish, ncol=1)
 
 # diel aci, separated by basin
 ggplot(d) + 

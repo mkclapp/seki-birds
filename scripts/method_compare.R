@@ -61,14 +61,103 @@ sumsum <- soundcount %>% spread(key = ID, value = n_sounds, fill = 0)
 sumsum <- sumsum %>%
   gather(key = ID, value = soundcount, ... = AMPI:YRWA) %>%
   group_by(identifier, basin, fish, lake) %>%
-  summarise(shannon = diversity(soundcount, index="shannon"))
+  summarise(shannon = diversity(soundcount, index="shannon"),
+            simpson = diversity(soundcount, index="simpson"),
+            nsounds = sum(soundcount))
 
+# frank = matrix of response vars and predictor indices
 frank <- merge(sumsum, indices, by = "identifier") #OMG it worked 
 
-# plot against acoustic index 
+
+# Comparisons with single indices -----------------------------------------
+
 # (ACIout = Acoustic Complexity, AR = Acoustic Richness, Rough = Roughness)
 ggplot(frank) + 
-  geom_point(aes(x = ADI_step, y = shannon, color = lake))
+  geom_point(aes(x = ADI_step, y = simpson, color = lake))
+
+
+# Random Forest -----------------------------------------------------------
+# adapted from R Buxton's RandomForestCode 11/21/2018
+library(rfUtilities)
+library(randomForest)
+library(caret)
+
+# frank is the dataframe we need
+
+DATA <- frank[complete.cases(frank),] # remove incomplete cases
+
+Response <- "shannon"  #For example, "SpeciesRichness"
+  
+#Put a dataframe with only index covariates in here 
+Covariates <- DATAcomplete[,which(colnames(DATAcomplete)=="ACIout"):which(colnames(DATAcomplete)=="AR")]
+  
+RFM1<-randomForest(as.formula(paste(Response, "~", 
+                                                 paste(colnames(Covariates), collapse = " + "),sep = "")), data=DATA, fam="gaussian",
+                                importance=TRUE, ntree=500)
+RFM1
+
+# remove collinear variables
+
+cl<-multi.collinear(DATA[,which(colnames(DATA)=="ACIout"):which(colnames(DATA)=="AR")], p=0.05)
+DATAcomplete <- DATA[,-which(colnames(DATA) %in% cl)]
+
+# go up and change Response input to DATAcomplete
+
+#### RANDOM FOREST MODEL SELECTION 
+# NOT WORKING
+# RFMODSEL<-rf.modelSel(DATA[,which(colnames(DATA)=="ACI"):which(colnames(DATA)=="AR")], 
+#                       DATA[[Response]],  imp.scale = "mir", final.model = TRUE)
+# 
+# 
+# ##Get R squared and Mean squared error for each RF type
+# Output<-data.frame(MSE=mean((predict(RandomForestMod)-DATA[[Response]])^2), 
+#                    Rsq=mean(RandomForestMod$rsq), Model="RandomForest", ResponseType=Response)
+# 
+# Output_RFSelection<-data.frame(MSE=RFMODSEL$rf.final$mse-DATA[[Response]])^2), 
+# Rsq=RFMODSEL$rf.final$rsq, Model="RandomForest_ModelSelection", ResponseType=Response)
+# 
+# RFM2
+
+
+  
+# GLMs --------------------------------------------------------------------
+
+
+
+library(lme4)
+
+colnames(frank)
+colnames(frank)[3] <- "fish"
+maudio <- lm(shannon ~ BKdB_bird + BKdB_low + ACIout + Hf + Ht + Rough + ADI_step + AR, data = frank)
+plot(fitted(maudio), resid(maudio)) 
+qqnorm(resid(maudio))
+qqline(resid(maudio))
+summary(maudio)
+
+
+maudio2 <- lm(shannon ~ BKdB_bird + ACIout + Hf + ADI_step, data = frankbirds)
+plot(fitted(maudio2), resid(maudio2)) 
+qqnorm(resid(maudio2))
+qqline(resid(maudio2))
+summary(maudio2)
+
+
+ggplot(frank, aes(x = ADI_step, y = nsounds)) + 
+  geom_point() +
+  abline() +
+  labs(title="Acoustic Diversity Index and Shannon diversity in 100 audio samples",
+       x = "Acoustic Diversity (ADI_step)", y = "Shannon Diversity") +
+  theme_minimal()
+
+ggplot(frankbirds, aes(x = BKdB_bird, y = shannon)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title="Acoustic Diversity Index and background decibel level in 100 audio samples",
+       x = "Background decibel level in mid-range frequency band (1413-11220 Hz)", y = "Shannon Diversity") +
+  theme_minimal()
+
+
+# old code [references external data frame] -------------------------------
 
 # birds only
 unique(birds$ID)
@@ -121,42 +210,5 @@ ggplot(frankbirds, aes(x = ADI_step, y = shannon)) +
         axis.text.y = element_text(family = "Helvetica", size=18, angle=0))
 
 ggsave(filename = "ADIxShannon.png", device = "png", path = "poster_plots/", width = 5, height = 5, units = "in")
-
-
-
-
-library(lme4)
-
-colnames(frankbirds)
-colnames(frankbirds)[3] <- "fish"
-maudio <- lm(shannon ~ BKdB_bird + BKdB_low + ACIout + Hf + Ht + Rough + ADI_step + AR, data = frankbirds)
-plot(fitted(maudio), resid(maudio)) 
-qqnorm(resid(maudio))
-qqline(resid(maudio))
-summary(maudio)
-
-
-
-
-maudio2 <- lm(shannon ~ BKdB_bird + ACIout + Hf + ADI_step, data = frankbirds)
-plot(fitted(maudio2), resid(maudio2)) 
-qqnorm(resid(maudio2))
-qqline(resid(maudio2))
-summary(maudio2)
-
-
-ggplot(frankbirds, aes(x = ADI_step, y = shannon)) + 
-  geom_point() +
-  abline() +
-  labs(title="Acoustic Diversity Index and Shannon diversity in 100 audio samples",
-       x = "Acoustic Diversity (ADI_step)", y = "Shannon Diversity") +
-  theme_minimal()
-
-ggplot(frankbirds, aes(x = BKdB_bird, y = shannon)) + 
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(title="Acoustic Diversity Index and background decibel level in 100 audio samples",
-       x = "Background decibel level in mid-range frequency band (1413-11220 Hz)", y = "Shannon Diversity") +
-  theme_minimal()
 
 
